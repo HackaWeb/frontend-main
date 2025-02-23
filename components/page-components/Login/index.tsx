@@ -1,0 +1,108 @@
+"use client";
+
+import { login } from "@/apis/auth";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { setCookie } from "@/helpers/setCookie";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
+import { toast } from "react-toastify";
+import { ImSpinner2 } from "react-icons/im";
+import { validateEmail } from "@/helpers/validateEmail";
+import { cn } from "@/helpers/cn";
+import { SOMETHING_WRONG_MESSAGE } from "@/constants";
+import { GoogleAuthButton } from "@/components/common/GoogleAuthButton";
+
+export const LoginPageComponent = () => {
+    const router = useRouter();
+
+    const [formData, setFormData] = useState({ email: "", password: "" });
+    const [isLoading, setIsLoading] = useState(false);
+
+    const onSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+
+        if (!formData.email.trim() || !formData.password.trim()) {
+            toast.error("Заповніть усі поля");
+            return;
+        }
+
+        if (!validateEmail(formData.email)) {
+            toast.error("Ваша пошта не є поштою");
+            return;
+        }
+
+        setIsLoading(true);
+        try {
+            const res = await login({
+                email: formData.email,
+                password: formData.password,
+            });
+
+            if ("jwtToken" in res) {
+                setCookie("token", res.jwtToken);
+                toast.success("Вас успішно авторизовано!");
+
+                router.refresh();
+                const timeout = setTimeout(() => {
+                    router.push("/profile");
+                    clearTimeout(timeout);
+                }, 1000);
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error(SOMETHING_WRONG_MESSAGE);
+        }
+        setIsLoading(false);
+    };
+
+    return (
+        <div className="container sm:mt-12 mt-6 flex flex-col place-items-center">
+            <h1>Авторизація</h1>
+            <form onSubmit={onSubmit} className="flex flex-col w-full">
+                <div className="space-y-2 sm:mt-10 mt-6">
+                    <Input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                        }
+                        placeholder="Пошта"
+                    />
+                    <Input
+                        type="password"
+                        value={formData.password}
+                        onChange={(e) =>
+                            setFormData({
+                                ...formData,
+                                password: e.target.value,
+                            })
+                        }
+                        placeholder="Пароль"
+                    />
+                </div>
+                <Link
+                    href="/register"
+                    className="mt-2 text-purple text-start text-sm"
+                >
+                    Не маєте акаунту? Зареєструйтесь!
+                </Link>
+                <Button
+                    color="purpleBackground"
+                    type="submit"
+                    className={cn(
+                        "px-10 sm:px-20 text-lg mt-5 mx-auto sm:mt-16",
+                        isLoading && "opacity-70",
+                    )}
+                >
+                    {isLoading && (
+                        <ImSpinner2 className="size-6 animate-spin text-gray" />
+                    )}{" "}
+                    <span>Увійти</span>
+                </Button>
+            </form>
+            <GoogleAuthButton />
+        </div>
+    );
+};
