@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { slideFromBottomAnimation } from "@/constants";
 import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
+import { Table } from "@/components/ui/Table";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     return (
