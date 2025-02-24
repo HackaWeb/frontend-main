@@ -2,7 +2,7 @@
 
 import { login } from "@/apis/auth";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/LabelInput";
+import { LabelInput } from "@/components/ui/LabelInput";
 import { setCookie } from "@/helpers/setCookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -61,17 +61,21 @@ export const LoginPageComponent = () => {
         <div className="container sm:mt-12 mt-6 flex flex-col place-items-center">
             <h1>Авторизація</h1>
             <form onSubmit={onSubmit} className="flex flex-col w-full">
-                <div className="space-y-2 sm:mt-10 mt-6">
-                    <Input
+                <div className="space-y-4 sm:mt-10 mt-6">
+                    <LabelInput
                         type="email"
                         value={formData.email}
                         onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                         }
-                        placeholder="Пошта"
+                        placeholder="Пошта..."
+                        labelTitle="Введіть пошту"
+                        id="email"
                     />
-                    <Input
+                    <LabelInput
                         type="password"
+                        id="password"
+                        labelTitle="Введіть пароль"
                         value={formData.password}
                         onChange={(e) =>
                             setFormData({
@@ -79,7 +83,7 @@ export const LoginPageComponent = () => {
                                 password: e.target.value,
                             })
                         }
-                        placeholder="Пароль"
+                        placeholder="Пароль..."
                     />
                 </div>
                 <Link

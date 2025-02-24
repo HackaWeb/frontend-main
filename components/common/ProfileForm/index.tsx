@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/LabelInput";
+import { LabelInput } from "@/components/ui/LabelInput";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
     const router = useRouter();
 
+    console.log(profile);
     const [userData, setUserData] = useState({
         firstName: profile.firstName || "",
         lastName: profile.lastName || "",
@@ -43,56 +44,49 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
     return (
         <div className="p-4 bg-blackOpacity rounded-md">
             <form onSubmit={onUpdateProfileSubmit}>
-                <div>
-                    <label htmlFor="email" className="text-gray">
-                        {isEditable
+                <LabelInput
+                    id="email"
+                    labelTitle={
+                        isEditable
                             ? "Ваша пошта"
-                            : `Пошта користувача ${profile.firstName} ${profile.lastName}`}
-                    </label>
-                    <Input
-                        id="email"
-                        placeholder={profile.email}
-                        disabled
-                        className="mt-2"
-                        type="email"
-                    />
-                </div>
-                <div className="mt-6">
-                    <label htmlFor="firstName" className="text-gray">
-                        {isEditable ? "Ваше імʼя" : "Імʼя користувача"}
-                    </label>
-                    <Input
-                        type="text"
-                        id="firstName"
-                        placeholder="Введіть ім'я..."
-                        value={userData.firstName}
-                        onChange={(e) =>
-                            setUserData({
-                                ...userData,
-                                firstName: e.target.value,
-                            })
-                        }
-                        className="mt-2"
-                    />
-                </div>
-                <div className="mt-6">
-                    <label htmlFor="lastName" className="text-gray">
-                        {isEditable ? "Ваше прізвище" : "Прізвище користувача"}
-                    </label>
-                    <Input
-                        type="text"
-                        id="lastName"
-                        placeholder="Введіть прізвище..."
-                        value={userData.lastName}
-                        onChange={(e) =>
-                            setUserData({
-                                ...userData,
-                                lastName: e.target.value,
-                            })
-                        }
-                        className="mt-2"
-                    />
-                </div>
+                            : `Пошта користувача ${profile.firstName} ${profile.lastName}`
+                    }
+                    value={profile.email}
+                    type="email"
+                    disabled
+                    placeholder=""
+                    onChange={() => {}}
+                />
+                <LabelInput
+                    id="firstName"
+                    labelTitle={isEditable ? "Ваше імʼя" : "Імʼя користувача"}
+                    value={userData.firstName}
+                    type="text"
+                    placeholder="Введіть ім'я..."
+                    onChange={(e) =>
+                        setUserData({
+                            ...userData,
+                            firstName: e.target.value,
+                        })
+                    }
+                    className="mt-6"
+                />
+                <LabelInput
+                    id="lastName"
+                    labelTitle={
+                        isEditable ? "Ваше прізвище" : "Прізвище користувача"
+                    }
+                    value={userData.lastName}
+                    type="text"
+                    placeholder="Введіть прізвище..."
+                    onChange={(e) =>
+                        setUserData({
+                            ...userData,
+                            lastName: e.target.value,
+                        })
+                    }
+                    className="mt-6"
+                />
                 <Button
                     type="submit"
                     color="purpleBackground"

@@ -3,7 +3,7 @@
 import { register } from "@/apis/auth";
 import { GoogleAuthButton } from "@/components/common/GoogleAuthButton";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/LabelInput";
+import { LabelInput } from "@/components/ui/LabelInput";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { cn } from "@/helpers/cn";
 import { setCookie } from "@/helpers/setCookie";
@@ -76,17 +76,21 @@ export const RegisterPageComponent = () => {
                 onSubmit={onSubmit}
                 className="flex flex-col place-items-center"
             >
-                <div className="space-y-2 sm:mt-10 mt-6">
-                    <Input
-                        placeholder="Ваша пошта..."
+                <div className="space-y-4 sm:mt-10 mt-6">
+                    <LabelInput
+                        labelTitle="Введіть пошту"
+                        id="email"
+                        placeholder="Пошта..."
                         type="email"
                         value={formData.email}
                         onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                         }
                     />
-                    <Input
-                        placeholder="Придумайте надійний пароль..."
+                    <LabelInput
+                        labelTitle="Придумайте надійний пароль..."
+                        placeholder="Надійний пароль"
+                        id="password"
                         type="password"
                         value={formData.password}
                         onChange={(e) =>
@@ -96,10 +100,11 @@ export const RegisterPageComponent = () => {
                             })
                         }
                     />
-                    <Input
-                        placeholder="Повторіть пароль..."
+                    <LabelInput
+                        labelTitle="Підтвердіть пароль..."
+                        placeholder="Підтвердіть пароль"
+                        id="new-password"
                         type="password"
-                        name="new-password"
                         value={formData.confirmPassword}
                         onChange={(e) =>
                             setFormData({
