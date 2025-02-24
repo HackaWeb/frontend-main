@@ -12,7 +12,6 @@ import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
     const router = useRouter();
 
-    console.log(profile);
     const [userData, setUserData] = useState({
         firstName: profile.firstName || "",
         lastName: profile.lastName || "",
