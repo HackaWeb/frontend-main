@@ -12,6 +12,7 @@ import { setCookie } from "@/helpers/setCookie";
 import { LayoutBackground } from "@/components/common/LayoutBackground";
 import { cn } from "@/helpers/cn";
 import { GoogleAuthProvider } from "@/components/providers/Google";
+import { refreshToken as refreshTokenHandler } from "@/apis/auth";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -53,26 +54,39 @@ interface RootLayoutProps {
 }
 
 const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
-    const token = await getCookie("token");
+    let token = await getCookie("token");
+    const refreshToken = await getCookie("refreshToken");
 
     let profile = null;
 
-    if (!token || !token.length) {
-        profile = null;
-    } else {
+    if (!token && refreshToken) {
         try {
-            const profileData = await getProfile();
+            const res = await refreshTokenHandler({ refreshToken });
 
-            if ("email" in profileData) {
-                profile = profileData;
-            } else {
-                profile = null;
-                setCookie("token", "");
+            if (res.token) {
+                setCookie("token", res.token);
+                setCookie("refreshToken", res.refreshToken);
+
+                token = res.token;
             }
         } catch (error) {
-            profile = null;
-            console.error(error);
+            console.log(error);
+
             setCookie("token", "");
+            setCookie("refreshToken", "");
+        }
+    }
+
+    if (token) {
+        try {
+            const profileData = await getProfile();
+            profile = "email" in profileData ? profileData : null;
+        } catch (error) {
+            console.error(error);
+
+            profile = null;
+            setCookie("token", "");
+            setCookie("refreshToken", "");
         }
     }
 

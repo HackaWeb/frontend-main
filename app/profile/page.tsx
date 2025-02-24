@@ -6,18 +6,18 @@ import { redirect } from "next/navigation";
 const MyProfile = async () => {
     const token = await getCookie("token");
 
-    /* if (!token) {
+    if (!token) {
         redirect("/login");
     }
 
     const getProfileHandler = async () => {
         try {
-            const data = await getProfile();
+            const response = await getProfile();
 
-            if ("statusCode" in data) {
-                redirect("/login");
+            if (response.id) {
+                return response;
             } else {
-                return data;
+                redirect("/login");
             }
         } catch (error) {
             console.error(error);
@@ -28,9 +28,8 @@ const MyProfile = async () => {
     const profile = await getProfileHandler();
     if (!profile) {
         redirect("/login");
-    } */
+    }
 
-    let profile = {};
     return <MyProfilePageComponent profile={profile} />;
 };
 

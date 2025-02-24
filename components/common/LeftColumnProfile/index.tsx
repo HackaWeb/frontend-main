@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AiOutlineUser, AiOutlineClose } from "react-icons/ai";
 import { Button } from "@/components/ui/Button";
-import {  updateProfile } from "@/apis/user";
+import { updateProfile } from "@/apis/user";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -41,7 +41,7 @@ export const LeftColumnProfile = ({
 
     const deleteAvatarHandler = async () => {
         try {
-            const res = {}/* await deleteAvatar(); */
+            const res = {}; /* await deleteAvatar(); */
 
             if (res.success) {
                 toast.success("Аватар видалено успішно!");
