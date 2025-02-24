@@ -8,7 +8,11 @@ export const getProfile = async (): Promise<UserProfile> =>
         method: "GET",
     });
 
-export const updateProfile = async (body: FormData): Promise<UserProfile> =>
+interface UpdateProfileBody {
+    firstName?: string;
+    lastName?: string;
+}
+export const updateProfile = async (body: UpdateProfileBody): Promise<UserProfile> =>
     fetchApi({
         endpoint: `/profile`,
         isAuthRequired: true,

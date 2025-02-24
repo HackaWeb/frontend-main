@@ -30,9 +30,8 @@ export const LeftColumnProfile = ({
             const res = await updateProfileImage(formData);
 
             if (res.avatarUrl) {
-                setAvatar(res.avatarUrl);
-                router.refresh();
                 toast.success("Аватар успішно змінено!");
+                router.refresh();
             } else {
                 toast.error(SOMETHING_WRONG_MESSAGE);
             }
@@ -49,6 +48,7 @@ export const LeftColumnProfile = ({
             if (res.isSuccess) {
                 toast.success("Аватар видалено успішно!");
                 setAvatar(null);
+                router.refresh();
             } else {
                 toast.error(SOMETHING_WRONG_MESSAGE);
             }
@@ -56,8 +56,6 @@ export const LeftColumnProfile = ({
             console.error(error);
             toast.error(SOMETHING_WRONG_MESSAGE);
         }
-
-        router.refresh();
     };
 
     const onAvatarChange = async (event: ChangeEvent<HTMLInputElement>) => {
@@ -97,7 +95,6 @@ export const LeftColumnProfile = ({
                                     width={0}
                                     height={0}
                                     sizes="100vw"
-                                    
                                 />
                             </>
                         ) : (

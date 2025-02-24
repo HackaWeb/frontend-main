@@ -24,13 +24,11 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
             toast.error("Заповніть хоча б одне поле");
         }
 
-        const formData = new FormData();
-        formData.append("firstName", userData.firstName);
-        formData.append("lastName", userData.lastName);
-        formData.append("avatar", new File([], "", { type: "image/png" }));
-
         try {
-            const response = await updateProfile(formData);
+            const response = await updateProfile({
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+            });
 
             if (response.id) {
                 toast.success("Профіль успішно оновлено");
