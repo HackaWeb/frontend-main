@@ -98,11 +98,11 @@ export const Aside = ({ profile }: AsideProps) => {
                     ) : (
                         <div className="flex mt-4 xsm:mt-8 mx-4 gap-4 bg-blackOpacity p-2 relative">
                             <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
-                                {!profile.avatar ? (
+                                {!profile.avatarUrl ? (
                                     <AiOutlineUser className="text-purple size-6" />
                                 ) : (
                                     <Image
-                                        src={profile.avatar}
+                                        src={profile.avatarUrl}
                                         alt={
                                             (profile.firstName || "") +
                                             " " +

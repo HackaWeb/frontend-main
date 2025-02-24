@@ -9,10 +9,12 @@ export const GoogleAuthButton = () => {
 
     const onAuthClick = async (response: CredentialResponse) => {
         try {
-            const res = await googleAuth({ credential: response.credential });
+            const res = await googleAuth({ token: response.credential });
+            console.log(res);
 
             if (res.token) {
                 setCookie("token", res.token);
+                setCookie("refreshToken", res.refreshToken);
                 toast.success("Вас успішно авторизовано!");
 
                 router.refresh();

@@ -7,6 +7,7 @@ interface AuthorizationBody {
 }
 interface AuthorizationResponse {
     token: string;
+    refreshToken: string;
 }
 export const register = async (
     body: AuthorizationBody,
@@ -29,12 +30,14 @@ export const login = async (
     });
 
 interface GoogleAuthBody {
-    credential: CredentialResponse["credential"];
+    token: CredentialResponse["credential"];
 }
-export const googleAuth = async (body: GoogleAuthBody): Promise<any> =>
+export const googleAuth = async (
+    body: GoogleAuthBody,
+): Promise<AuthorizationResponse> =>
     fetchApi({
-        endpoint: "/auth/login/google",
+        endpoint: "/auth/google",
         isAuthRequired: false,
-        method: "GET",
-        body: body
+        method: "POST",
+        body: body,
     });

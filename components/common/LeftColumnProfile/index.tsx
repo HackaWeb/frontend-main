@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AiOutlineUser, AiOutlineClose } from "react-icons/ai";
 import { Button } from "@/components/ui/Button";
-import { deleteAvatar, updateProfile } from "@/apis/user";
+import {  updateProfile } from "@/apis/user";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -18,7 +18,9 @@ export const LeftColumnProfile = ({
 }: LeftColumnProfileProps) => {
     const router = useRouter();
 
-    const [avatar, setAvatar] = useState<string | null>(profile.avatar ?? null);
+    const [avatar, setAvatar] = useState<string | null>(
+        profile.avatarUrl ?? null,
+    );
 
     const updateAvatarHandler = async (imageData: File) => {
         const formData = new FormData();
@@ -28,7 +30,7 @@ export const LeftColumnProfile = ({
             const res = await updateProfile(formData);
 
             if (res.id) {
-                setAvatar(res.avatar);
+                setAvatar(res.avatarUrl);
                 router.refresh();
                 toast.success("Аватар успішно змінено!");
             }
@@ -39,7 +41,7 @@ export const LeftColumnProfile = ({
 
     const deleteAvatarHandler = async () => {
         try {
-            const res = await deleteAvatar();
+            const res = {}/* await deleteAvatar(); */
 
             if (res.success) {
                 toast.success("Аватар видалено успішно!");
