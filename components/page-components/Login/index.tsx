@@ -2,7 +2,7 @@
 
 import { login } from "@/apis/auth";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/LabelInput";
 import { setCookie } from "@/helpers/setCookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

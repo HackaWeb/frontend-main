@@ -3,7 +3,7 @@
 import { register } from "@/apis/auth";
 import { GoogleAuthButton } from "@/components/common/GoogleAuthButton";
 import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/LabelInput";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { cn } from "@/helpers/cn";
 import { setCookie } from "@/helpers/setCookie";
