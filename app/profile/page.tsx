@@ -1,4 +1,4 @@
-import { getProfile } from "@/apis/user";
+import { getProfile } from "@/apis/profile";
 import { MyProfilePageComponent } from "@/components/page-components/MyProfile";
 import { getCookie } from "@/helpers/getCookie";
 import { redirect } from "next/navigation";

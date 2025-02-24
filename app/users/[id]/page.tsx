@@ -1,25 +1,25 @@
-import { getProfile } from "@/apis/user";
+import { getUser } from "@/apis/users";
 import { UserProfilePageComponent } from "@/components/page-components/UserProfile";
-import { getCookie } from "@/helpers/getCookie";
 import { notFound } from "next/navigation";
 
 const UserProfile = async ({ params }: { params: Promise<{ id: string }> }) => {
-    /*  const getUserProfileHandler = async () => {
-        try {
-            const data = await getProfile();
+    const userId = (await params).id;
 
-            return { ...data };
+    const getUserHandler = async () => {
+        try {
+            const response = await getUser(userId);
+
+            return { ...response };
         } catch (error) {
             console.error(error);
             return null;
         }
     };
 
-    const profile = await getUserProfileHandler();
-    if (!profile) notFound(); */
-    let profile = {};
+    const user = await getUserHandler();
+    if (!user) notFound();
 
-    return <UserProfilePageComponent profile={profile} />;
+    return <UserProfilePageComponent profile={user} />;
 };
 
 export default UserProfile;

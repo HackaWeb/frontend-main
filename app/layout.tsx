@@ -7,7 +7,7 @@ import { Aside } from "@/components/common/Aside";
 import { ToastProvider } from "@/components/providers/Toast";
 import { getCookie } from "@/helpers/getCookie";
 import { Modals } from "@/components/Modals";
-import { getProfile } from "@/apis/user";
+import { getProfile } from "@/apis/profile";
 import { setCookie } from "@/helpers/setCookie";
 import { LayoutBackground } from "@/components/common/LayoutBackground";
 import { cn } from "@/helpers/cn";

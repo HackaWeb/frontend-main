@@ -6,7 +6,7 @@ import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { ProfileFormProps } from "./ProfileForm.props";
-import { updateProfile } from "@/apis/user";
+import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 
 export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {

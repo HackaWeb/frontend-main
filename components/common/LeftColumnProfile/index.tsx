@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { AiOutlineUser, AiOutlineClose } from "react-icons/ai";
 import { Button } from "@/components/ui/Button";
-import { updateProfile } from "@/apis/user";
+import { deleteProfileImage, updateProfileImage } from "@/apis/profile";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -27,12 +27,14 @@ export const LeftColumnProfile = ({
         formData.append("avatar", imageData);
 
         try {
-            const res = await updateProfile(formData);
+            const res = await updateProfileImage(formData);
 
-            if (res.id) {
+            if (res.avatarUrl) {
                 setAvatar(res.avatarUrl);
                 router.refresh();
                 toast.success("Аватар успішно змінено!");
+            } else {
+                toast.error(SOMETHING_WRONG_MESSAGE);
             }
         } catch (error) {
             console.error(error);
@@ -41,22 +43,23 @@ export const LeftColumnProfile = ({
 
     const deleteAvatarHandler = async () => {
         try {
-            const res = {}; /* await deleteAvatar(); */
+            const res = await deleteProfileImage();
 
-            if (res.success) {
+            if (res.isSuccess) {
                 toast.success("Аватар видалено успішно!");
                 setAvatar(null);
+            } else {
+                toast.error(SOMETHING_WRONG_MESSAGE);
             }
         } catch (error) {
             console.error(error);
             toast.error(SOMETHING_WRONG_MESSAGE);
         }
+
         router.refresh();
     };
 
-    const onAvatarChange = async (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => {
+    const onAvatarChange = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
