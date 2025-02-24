@@ -111,7 +111,7 @@ export const Aside = ({ profile }: AsideProps) => {
                                         width={0}
                                         height={0}
                                         sizes="100vw"
-                                        className="w-full"
+                                        className="w-full h-full object-cover"
                                     />
                                 )}
                             </div>

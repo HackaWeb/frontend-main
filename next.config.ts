@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
     crossOrigin: "anonymous",
     images: {
         remotePatterns: [
-            /* {
-                hostname: "hackaweb.blob.core.windows.net",
-            }, */
+            {
+                hostname: "dmtrapp.blob.core.windows.net",
+            },
         ],
     },
 };

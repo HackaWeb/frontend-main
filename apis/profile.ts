@@ -25,7 +25,7 @@ export const updateProfileImage = async (
     fetchApi({
         endpoint: `/profile/image`,
         isAuthRequired: true,
-        method: "PUT",
+        method: "POST",
         body,
     });
 

@@ -24,7 +24,7 @@ export const LeftColumnProfile = ({
 
     const updateAvatarHandler = async (imageData: File) => {
         const formData = new FormData();
-        formData.append("avatar", imageData);
+        formData.append("file", imageData);
 
         try {
             const res = await updateProfileImage(formData);
@@ -40,6 +40,7 @@ export const LeftColumnProfile = ({
             console.error(error);
         }
     };
+    console.log(profile);
 
     const deleteAvatarHandler = async () => {
         try {
@@ -96,6 +97,7 @@ export const LeftColumnProfile = ({
                                     width={0}
                                     height={0}
                                     sizes="100vw"
+                                    
                                 />
                             </>
                         ) : (
