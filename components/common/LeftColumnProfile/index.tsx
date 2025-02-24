@@ -39,7 +39,6 @@ export const LeftColumnProfile = ({
             console.error(error);
         }
     };
-    console.log(profile);
 
     const deleteAvatarHandler = async () => {
         try {
