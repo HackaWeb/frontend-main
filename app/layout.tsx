@@ -61,6 +61,20 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
 
     let profile = null;
 
+    if (token) {
+        try {
+            const profileData = await getProfile();
+            console.log(profileData);
+            profile = "email" in profileData ? profileData : null;
+        } catch (error) {
+            console.error(error);
+
+            profile = null;
+            setCookie("token", "");
+            setCookie("refreshToken", "");
+        }
+    }
+
     if (!token && refreshToken) {
         try {
             const res = await refreshTokenHandler({ refreshToken });
@@ -74,19 +88,6 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
         } catch (error) {
             console.log(error);
 
-            setCookie("token", "");
-            setCookie("refreshToken", "");
-        }
-    }
-
-    if (token) {
-        try {
-            const profileData = await getProfile();
-            profile = "email" in profileData ? profileData : null;
-        } catch (error) {
-            console.error(error);
-
-            profile = null;
             setCookie("token", "");
             setCookie("refreshToken", "");
         }

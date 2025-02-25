@@ -12,6 +12,7 @@ import { setCookie } from "@/helpers/setCookie";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Language } from "./Language";
+import { Messages } from "./Messages";
 
 export const Header = ({ profile }: HeaderProps) => {
     const dispatch = useAppDispatch();
@@ -53,42 +54,45 @@ export const Header = ({ profile }: HeaderProps) => {
                     </div>
                 </div>
             ) : (
-                <div className="flex bg-blackOpacity p-2 relative w-auto">
-                    <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
-                        {!profile.avatarUrl ? (
-                            <AiOutlineUser className="text-purple size-6" />
-                        ) : (
-                            <Image
-                                src={profile.avatarUrl}
-                                alt={
-                                    (profile.firstName || "") +
-                                    " " +
-                                    (profile.lastName || "")
-                                }
-                                width={0}
-                                height={0}
-                                sizes="100vw"
-                                className="w-full h-full object-cover"
-                            />
-                        )}
-                    </div>
-                    <div className="mx-4">
-                        <Link href="/profile" className="text-white">
-                            {printUserNickname(
-                                profile.firstName,
-                                profile.lastName,
+                <div className="flex items-center gap-4">
+                    <div className="flex bg-blackOpacity p-2 relative w-auto">
+                        <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
+                            {!profile.avatarUrl ? (
+                                <AiOutlineUser className="text-purple size-6" />
+                            ) : (
+                                <Image
+                                    src={profile.avatarUrl}
+                                    alt={
+                                        (profile.firstName || "") +
+                                        " " +
+                                        (profile.lastName || "")
+                                    }
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                    className="w-full h-full object-cover"
+                                />
                             )}
-                        </Link>
-                        <button
-                            onClick={onLogoutClick}
-                            className="text-gray-dark flex items-center gap-1 text-sm mt-1"
-                        >
-                            <RiLogoutBoxLine />
-                            <span>Log out</span>
-                        </button>
+                        </div>
+                        <div className="mx-4">
+                            <Link href="/profile" className="text-white">
+                                {printUserNickname(
+                                    profile.firstName,
+                                    profile.lastName,
+                                )}
+                            </Link>
+                            <button
+                                onClick={onLogoutClick}
+                                className="text-gray-dark flex items-center gap-1 text-sm mt-1"
+                            >
+                                <RiLogoutBoxLine />
+                                <span>Log out</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
+            <Messages />
         </header>
     );
 };
