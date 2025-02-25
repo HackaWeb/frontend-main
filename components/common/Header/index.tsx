@@ -55,7 +55,7 @@ export const Header = ({ profile }: HeaderProps) => {
                 </div>
             ) : (
                 <div className="flex items-center gap-4">
-                    <div className="flex bg-blackOpacity p-2 relative w-auto">
+                    <div className="flex bg-blackOpacity p-2 relative w-auto rounded-md">
                         <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
                             {!profile.avatarUrl ? (
                                 <AiOutlineUser className="text-purple size-6" />
@@ -90,9 +90,9 @@ export const Header = ({ profile }: HeaderProps) => {
                             </button>
                         </div>
                     </div>
+                    <Messages />
                 </div>
             )}
-            <Messages />
         </header>
     );
 };
