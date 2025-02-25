@@ -22,7 +22,7 @@ export const LayoutBackground = () => {
         });
     }, [color]);
 
-    const backgroundImage = useMotionTemplate`radial-gradient(150% 160% at 55% 0%, #111827 55%, ${color})`;
+    const backgroundImage = useMotionTemplate`radial-gradient(150% 160% at 55% 0%, var(--background) 55%, ${color})`;
 
     return (
         <motion.main

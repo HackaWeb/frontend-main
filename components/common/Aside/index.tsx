@@ -12,9 +12,13 @@ import { AsideProps } from "./Aside.props";
 import { GiThink } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
+import { getCookie } from "@/helpers/getCookie";
+import { setCookie } from "@/helpers/setCookie";
 
 export const Aside = ({ profile }: AsideProps) => {
+    const router = useRouter();
     const links = [
         {
             title: "Хоум",
@@ -44,6 +48,17 @@ export const Aside = ({ profile }: AsideProps) => {
         dispatch(setIsAsideOpened(value));
     };
 
+    const isDarkTheme = async () => {
+        const theme = await getCookie("theme");
+        return theme === "dark";
+    };
+
+    const handleThemeSwitch = async () => {
+        const isDark = await isDarkTheme();
+        setCookie("theme", isDark ? "light" : "dark");
+        router.refresh();
+    };
+
     useEffect(() => {
         setIsAsideOpenedHandler(false);
     }, [pathname]);
@@ -70,14 +85,17 @@ export const Aside = ({ profile }: AsideProps) => {
                 } lg:translate-x-0`}
             >
                 <div className="xsm:mt-6 mt-4">
-                    <Link
-                        href="/"
-                        className="text-white text-2xl flex items-center gap-2"
-                        onClick={() => setActiveLink("Усі квести")}
-                    >
-                        <GiThink className="size-12" />
-                        <span>QuizzApp</span>
-                    </Link>
+                    <div className="flex gap-12 place-items-center">
+                        <Link
+                            href="/"
+                            className="text-white text-2xl flex items-center gap-2"
+                            onClick={() => setActiveLink("Усі квести")}
+                        >
+                            <GiThink className="size-12" />
+                            <span>QuizzApp</span>
+                        </Link>
+                        <ThemeSwitch onCheckedChange={handleThemeSwitch} />
+                    </div>
 
                     <nav className="text-lg mt-8">
                         <ul>

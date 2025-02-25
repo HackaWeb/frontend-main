@@ -1,14 +1,8 @@
 import { CredentialResponse } from "@react-oauth/google";
 import { fetchApi } from "./fetchApi";
+import { AuthorizationBody, RefreshTokenBody } from "./bodies/auth.interface";
+import { AuthorizationResponse } from "./responses/auth.type";
 
-interface AuthorizationBody {
-    email: string;
-    password: string;
-}
-interface AuthorizationResponse {
-    token: string;
-    refreshToken: string;
-}
 export const register = async (
     body: AuthorizationBody,
 ): Promise<AuthorizationResponse> =>
@@ -42,9 +36,6 @@ export const googleAuth = async (
         body: body,
     });
 
-interface RefreshTokenBody {
-    refreshToken: string;
-}
 export const refreshToken = async (
     body: RefreshTokenBody,
 ): Promise<AuthorizationResponse> =>

@@ -1,5 +1,8 @@
 import { UserProfile } from "@/types/user.interface";
 import { fetchApi } from "./fetchApi";
+import { DeleteProfileImageResponse } from "./responses/profile.type";
+import { UpdateProfileBody } from "./bodies/profile.interface";
+import { UpdateProfileImageResponse } from "./responses/profile.type";
 
 export const getProfile = async (): Promise<UserProfile> =>
     fetchApi({
@@ -8,11 +11,9 @@ export const getProfile = async (): Promise<UserProfile> =>
         method: "GET",
     });
 
-interface UpdateProfileBody {
-    firstName?: string;
-    lastName?: string;
-}
-export const updateProfile = async (body: UpdateProfileBody): Promise<UserProfile> =>
+export const updateProfile = async (
+    body: UpdateProfileBody,
+): Promise<UserProfile> =>
     fetchApi({
         endpoint: `/profile`,
         isAuthRequired: true,
@@ -20,9 +21,6 @@ export const updateProfile = async (body: UpdateProfileBody): Promise<UserProfil
         body,
     });
 
-interface UpdateProfileImageResponse {
-    avatarUrl: string;
-}
 export const updateProfileImage = async (
     body: FormData,
 ): Promise<UpdateProfileImageResponse> =>
@@ -33,9 +31,6 @@ export const updateProfileImage = async (
         body,
     });
 
-interface DeleteProfileImageResponse {
-    isSuccess: boolean;
-}
 export const deleteProfileImage =
     async (): Promise<DeleteProfileImageResponse> =>
         fetchApi({
