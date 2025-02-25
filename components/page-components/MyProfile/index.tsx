@@ -85,7 +85,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     return (
         <motion.div
             {...slideFromBottomAnimation}
-            className="mt-8 bg-blackOpacity-light p-6"
+            className="mt-8 bg-secondary-light p-6 text-primary"
         >
             <h1>Мій кабінет</h1>
             <ReturnBtn className="mt-4" />
@@ -96,8 +96,8 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                 <div className="overflow-hidden">
                     <ProfileForm profile={profile} isEditable={true} />
                     <div>
-                        <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
-                            <div className="text-white font-semibold text-lg">
+                        <div className=" p-4 rounded-md mt-6 overflow-hidden">
+                            <div className="text-primary font-semibold text-lg">
                                 Table Title
                             </div>
                             <Table
@@ -106,7 +106,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                                 data={data}
                             />
                         </div>
-                        <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
+                        <div className=" p-4 rounded-md mt-6 overflow-hidden">
                             <div className="flex justify-between">
                                 <Input
                                     placeholder="Search data..."

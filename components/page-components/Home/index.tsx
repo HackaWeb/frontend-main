@@ -14,9 +14,13 @@ export const HomePageComponent = ({}: HomePageComponentProps) => {
     };
 
     return (
-        <div className="bg-blackOpacity-light p-6 rounded-md">
+        <div className="bg-secondary-light p-6 rounded-md text-primary">
             <h1>Хоум</h1>
-            <Button onClick={onButtonClick} color="purpleBackground">
+            <Button
+                onClick={onButtonClick}
+                color="purpleBackground"
+                className="mt-3"
+            >
                 Modal test
             </Button>
         </div>

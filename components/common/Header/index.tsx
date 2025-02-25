@@ -28,16 +28,16 @@ export const Header = ({ profile }: HeaderProps) => {
     };
 
     return (
-        <header className="p-4 xsm:p-6 bg-blackOpacity-light rounded-md flex flex-col xsm:flex-row gap-4 justify-end items-center">
+        <header className="p-4 xsm:p-6 bg-secondary-light rounded-md flex flex-col xsm:flex-row gap-4 justify-end items-center">
             <Language />
             {!profile ? (
-                <div className="flex items-center gap-4 bg-blackOpacity p-2">
+                <div className="flex items-center gap-4 bg-secondary p-2">
                     <div className="p-1 w-12 h-12 border-purple border-2 rounded-md xsm:p-3 flex justify-center items-center">
                         <AiOutlineUser className="text-purple size-6" />
                     </div>
                     <div className="flex items-center gap-2">
                         <Link
-                            className="text-yellow hover:text-yellow-light"
+                            className="text-green-600 hover:text-green-500"
                             href="/login"
                             onClick={() => setIsAsideOpenedHandler(false)}
                         >
@@ -53,7 +53,7 @@ export const Header = ({ profile }: HeaderProps) => {
                     </div>
                 </div>
             ) : (
-                <div className="flex bg-blackOpacity p-2 relative w-auto">
+                <div className="flex bg-secondary p-2 relative w-auto">
                     <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
                         {!profile.avatarUrl ? (
                             <AiOutlineUser className="text-purple size-6" />
@@ -73,7 +73,7 @@ export const Header = ({ profile }: HeaderProps) => {
                         )}
                     </div>
                     <div className="mx-4">
-                        <Link href="/profile" className="text-white">
+                        <Link href="/profile" className="text-primary">
                             {printUserNickname(
                                 profile.firstName,
                                 profile.lastName,
@@ -81,7 +81,7 @@ export const Header = ({ profile }: HeaderProps) => {
                         </Link>
                         <button
                             onClick={onLogoutClick}
-                            className="text-gray-dark flex items-center gap-1 text-sm mt-1"
+                            className="text-red-light flex items-center gap-1 text-sm mt-1"
                         >
                             <RiLogoutBoxLine />
                             <span>Log out</span>

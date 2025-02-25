@@ -10,11 +10,11 @@ const AuthLayout = ({ children }: { children: ReactNode }) => {
     const pathname = usePathname();
 
     return (
-        <div className="flex place-content-center place-items-center h-full overflow-hidden">
+        <div className="flex place-content-center place-items-center h-full overflow-hidden text-primary">
             <motion.div
                 key={pathname}
                 {...slideFromBottomAnimation}
-                className="container p-4 sm:p-8 bg-blackOpacity rounded-lg flex flex-col max-w-xl"
+                className="container p-4 sm:p-8 bg-secondary rounded-lg flex flex-col max-w-xl"
             >
                 <div>
                     <ReturnBtn />

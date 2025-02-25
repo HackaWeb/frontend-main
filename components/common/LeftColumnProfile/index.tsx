@@ -67,7 +67,7 @@ export const LeftColumnProfile = ({
 
     return (
         <div className="max-w-[400px]">
-            <div className="p-4 bg-blackOpacity rounded-md">
+            <div className="p-4 bg-secondary rounded-md">
                 <div className="w-full h-auto aspect-square border border-purple rounded-md p-2 relative">
                     {isEditable && avatar && (
                         <Button
@@ -83,7 +83,7 @@ export const LeftColumnProfile = ({
                     <motion.div
                         key={avatar}
                         {...popAnimation}
-                        className="bg-blackOpacity-dark w-full h-full flex items-center justify-center rounded-md overflow-hidden"
+                        className="w-full h-full flex items-center justify-center rounded-md overflow-hidden"
                     >
                         {avatar ? (
                             <>

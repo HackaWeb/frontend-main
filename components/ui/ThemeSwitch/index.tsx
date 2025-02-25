@@ -1,36 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { BsSun, BsMoon } from "react-icons/bs";
-import { getCookie } from "@/helpers/getCookie";
+import { setCookie } from "@/helpers/setCookie";
+import { useRouter } from "next/navigation";
+import { cn } from "@/helpers/cn";
 import { ThemeSwitchProps } from "./ThemeSwitch.props";
 
-export const ThemeSwitch = ({ onCheckedChange }: ThemeSwitchProps) => {
-    const [isDark, setIsDark] = useState(true);
+export const ThemeSwitch = ({ theme }: ThemeSwitchProps) => {
+    const router = useRouter();
 
-    useEffect(() => {
-        const checkTheme = async () => {
-            const theme = await getCookie("theme");
-            setIsDark(theme === "dark");
-        };
+    const isDarkTheme = async () => {
+        return theme === "dark";
+    };
 
-        checkTheme();
-    }, []);
+    const handleThemeSwitch = async () => {
+        const isDark = await isDarkTheme();
+        setCookie("theme", !isDark ? "dark" : "light");
+        router.refresh();
+    };
 
     return (
-        <button
+        <div
             onClick={() => {
-                setIsDark(!isDark);
-                onCheckedChange();
+                handleThemeSwitch();
             }}
-            className="p-2 rounded-lg hover:bg-white/10 transition-colors"
-            aria-label="Toggle theme"
-        >
-            {isDark ? (
-                <BsMoon className="size-5 text-white" />
-            ) : (
-                <BsSun className="size-5 text-yellow" />
+            className={cn(
+                "cursor-pointer w-12 h-6 rounded-full relative transition-colors duration-200",
+                theme === "dark" ? "bg-gray-500" : "bg-white",
             )}
-        </button>
+        >
+            <div
+                className={`
+                    absolute top-0.5 left-0.5 w-5 h-5 rounded-full 
+                    flex items-center justify-center
+                    transition-transform duration-200 ease-in-out
+                    ${
+                        theme === "dark"
+                            ? "translate-x-6 bg-purple"
+                            : "translate-x-0 bg-yellow"
+                    }
+                `}
+            >
+                {theme === "dark" ? (
+                    <BsMoon className="size-3 text-primary" />
+                ) : (
+                    <BsSun className="size-3 text-primary" />
+                )}
+            </div>
+        </div>
     );
 };

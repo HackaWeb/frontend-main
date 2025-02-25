@@ -14,7 +14,7 @@ import { cn } from "@/helpers/cn";
 import { GoogleAuthProvider } from "@/components/providers/Google";
 import { refreshToken as refreshTokenHandler } from "@/apis/auth";
 import { Header } from "@/components/common/Header";
-
+import { Theme } from "@/components/ui/ThemeSwitch/ThemeSwitch.props";
 const inter = Inter({
     variable: "--font-inter",
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -56,7 +56,7 @@ interface RootLayoutProps {
 
 const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
     let token = await getCookie("token");
-    const theme = await getCookie("theme");
+    const theme = await getCookie<Theme>("theme");
     const refreshToken = await getCookie("refreshToken");
 
     let profile = null;
@@ -104,7 +104,7 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
                 <LayoutBackground />
                 <GoogleAuthProvider>
                     <ReduxProvider>
-                        <Aside profile={profile} />
+                        <Aside profile={profile} theme={theme} />
                         <div className="p-2">
                             <Header profile={profile} />
                             <main className="mt-6">{children}</main>

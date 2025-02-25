@@ -1,3 +1,5 @@
 export interface ThemeSwitchProps {
-    onCheckedChange: () => void;
+    theme: Theme | null;
 }
+
+export type Theme = "dark" | "light";
