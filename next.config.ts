@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
             {
                 hostname: "dmtrapp.blob.core.windows.net",
             },
+            {
+                hostname: "lh3.googleusercontent.com",
+            },
         ],
     },
 };

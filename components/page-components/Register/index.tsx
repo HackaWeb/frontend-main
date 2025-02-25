@@ -52,8 +52,9 @@ export const RegisterPageComponent = () => {
                 password: formData.password,
             });
 
-            if ("jwtToken" in res) {
-                setCookie("token", res.jwtToken);
+            if (res.token) {
+                setCookie("token", res.token);
+                setCookie("refreshToken", res.refreshToken);
                 toast.success("Вас успішно зареєстровано!");
                 router.refresh();
 

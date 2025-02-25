@@ -40,11 +40,14 @@ export const LoginPageComponent = () => {
                 password: formData.password,
             });
 
-            if ("jwtToken" in res) {
-                setCookie("token", res.jwtToken);
-                toast.success("Вас успішно авторизовано!");
+            console.log(res);
 
+            if (res.token) {
+                setCookie("token", res.token);
+                setCookie("refreshToken", res.refreshToken);
+                toast.success("Вас успішно авторизовано!");
                 router.refresh();
+
                 const timeout = setTimeout(() => {
                     router.push("/profile");
                     clearTimeout(timeout);

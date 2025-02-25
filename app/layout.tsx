@@ -56,6 +56,7 @@ interface RootLayoutProps {
 
 const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
     let token = await getCookie("token");
+    const theme = await getCookie("theme");
     const refreshToken = await getCookie("refreshToken");
 
     let profile = null;
@@ -100,6 +101,7 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
                 className={cn(
                     "grid grid-cols-[1fr] lg:grid-cols-[280px_1fr] relative",
                     inter.variable,
+                    theme || "dark",
                 )}
             >
                 <LayoutBackground />
