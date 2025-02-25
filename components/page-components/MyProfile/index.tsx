@@ -22,11 +22,11 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "john.doe@example.com",
             "Admin",
             <div className="flex gap-2">
-                <Button color="purpleBorder">
+                <Button color="purpleBorder" className="px-4 py-2">
                     <FaEdit />
                     Edit
                 </Button>
-                <Button color="redBorder">
+                <Button color="redBorder" className="px-4 py-2">
                     <FaTrashAlt />
                     Delete
                 </Button>
@@ -38,11 +38,11 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "jane.smith@example.com",
             "User",
             <div className="flex gap-2">
-                <Button color="purpleBorder">
+                <Button color="purpleBorder" className="px-4 py-2">
                     <FaEdit />
                     Edit
                 </Button>
-                <Button color="redBorder">
+                <Button color="redBorder" className="px-4 py-2">
                     <FaTrashAlt />
                     Delete
                 </Button>
@@ -54,11 +54,11 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "mark.johnson@example.com",
             "Moderator",
             <div className="flex gap-2">
-                <Button color="purpleBorder">
+                <Button color="purpleBorder" className="px-4 py-2">
                     <FaEdit />
                     Edit
                 </Button>
-                <Button color="redBorder">
+                <Button color="redBorder" className="px-4 py-2">
                     <FaTrashAlt />
                     Delete
                 </Button>
@@ -70,14 +70,14 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "emily.davis@example.com",
             "User",
             <div className="flex gap-2">
-                <button className="p-2 bg-blue-500 text-white rounded flex items-center gap-1">
+                <Button color="purpleBorder" className="px-4 py-2">
                     <FaEdit />
                     Edit
-                </button>
-                <button className="p-2 bg-red-500 text-white rounded flex items-center gap-1">
+                </Button>
+                <Button color="redBorder" className="px-4 py-2">
                     <FaTrashAlt />
                     Delete
-                </button>
+                </Button>
             </div>,
         ],
     ];
@@ -89,38 +89,59 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
         >
             <h1>Мій кабінет</h1>
             <ReturnBtn className="mt-4" />
-            <div className="mt-8 grid grid-cols-[1fr] sm:grid-cols-[240px_auto] 2xl:grid-cols-[240px_330px_auto] gap-6 items-start">
+            <div className="mt-8 grid grid-cols-[1fr] sm:grid-cols-[240px_auto] 2xl:grid-cols-[240px_auto] gap-6 items-start">
                 <div>
                     <LeftColumnProfile profile={profile} isEditable={true} />
                 </div>
-                <ProfileForm profile={profile} isEditable={true} />
-                <div className="bg-blackOpacity-light p-4 rounded-md">
-                    <div className="flex justify-between">
-                        <Input
-                            placeholder="Search data..."
-                            className="max-w-60"
-                        />
-                        <div className="flex items-center gap-4">
-                            <div className="w-40">
-                                <Select
-                                    options={[
-                                        { value: "1", title: "ID" },
-                                        { value: "2", title: "Name" },
-                                        { value: "3", title: "Email" },
-                                        { value: "4", title: "Role" },
-                                    ]}
-                                    placeholder="Sort by"
-                                    activeOption={null}
-                                    setActiveOption={() => {}}
-                                    id="sort-by"
-                                />
+                <div className="overflow-hidden">
+                    <ProfileForm profile={profile} isEditable={true} />
+                    <div>
+                        <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
+                            <div className="text-white font-semibold text-lg">
+                                Table Title
                             </div>
-                            <Button className="" color="purpleBackground">
-                                New Data
-                            </Button>
+                            <Table
+                                className="mt-4"
+                                headers={headers}
+                                data={data}
+                            />
+                        </div>
+                        <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
+                            <div className="flex justify-between">
+                                <Input
+                                    placeholder="Search data..."
+                                    className="max-w-60"
+                                />
+                                <div className="flex items-center gap-4">
+                                    <div className="w-40">
+                                        <Select
+                                            options={[
+                                                { value: "1", title: "ID" },
+                                                { value: "2", title: "Name" },
+                                                { value: "3", title: "Email" },
+                                                { value: "4", title: "Role" },
+                                            ]}
+                                            placeholder="Sort by"
+                                            activeOption={null}
+                                            setActiveOption={() => {}}
+                                            id="sort-by"
+                                        />
+                                    </div>
+                                    <Button
+                                        className=""
+                                        color="purpleBackground"
+                                    >
+                                        New Data
+                                    </Button>
+                                </div>
+                            </div>
+                            <Table
+                                className="mt-4"
+                                headers={headers}
+                                data={data}
+                            />
                         </div>
                     </div>
-                    <Table className="mt-4" headers={headers} data={data} />
                 </div>
             </div>
         </motion.div>
