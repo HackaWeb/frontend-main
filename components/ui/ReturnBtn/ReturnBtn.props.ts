@@ -1,6 +1,3 @@
-import { ModalType } from "@/store/slices/modals/modals.type";
+import { ComponentProps } from "react";
 
-export interface ReturnBtnProps extends React.ComponentProps<"button"> {
-    modal?: ModalType;
-    isPrev?: boolean;
-}
+export interface ReturnBtnProps extends ComponentProps<"button"> {}

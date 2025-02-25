@@ -6,30 +6,26 @@ import { ReturnBtnProps } from "./ReturnBtn.props";
 import { cn } from "@/helpers/cn";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
+import { closeModal, selectOpenedModal } from "@/store/slices/openedModal";
 import { useAppSelector } from "@/store/hooks/useAppSelector";
-import { selectPrev, toggleModal } from "@/store/slices/modals";
 
-export const ReturnBtn = ({
-    className,
-    modal,
-    isPrev = false,
-}: ReturnBtnProps) => {
+export const ReturnBtn = ({ className }: ReturnBtnProps) => {
     const router = useRouter();
-
     const dispatch = useAppDispatch();
+    const openedModal = useAppSelector(selectOpenedModal);
 
-    const prev = useAppSelector(selectPrev);
+    const closeModalHandler = () => {
+        dispatch(closeModal());
+    };
 
     const goBack = () => {
-        if (!modal) {
-            router.back();
+        if (openedModal) {
+            closeModalHandler();
             return;
         }
-        if (isPrev && prev) {
-            dispatch(toggleModal(prev));
-        }
-        
-        dispatch(toggleModal(modal));
+
+        router.back();
+        return;
     };
 
     return (
