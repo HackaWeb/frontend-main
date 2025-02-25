@@ -2,42 +2,51 @@
 
 import Link from "next/link";
 import { AiOutlineUser } from "react-icons/ai";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks/useAppSelector";
 import { selectAside, setIsAsideOpened } from "@/store/slices/aside";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { Button } from "@/components/ui/Button";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { RiLogoutBoxLine } from "react-icons/ri";
-import Image from "next/image";
-import { setCookie } from "@/helpers/setCookie";
-import { toast } from "react-toastify";
 import { AsideProps } from "./Aside.props";
 import { GiThink } from "react-icons/gi";
-import { printUserNickname } from "@/helpers/printUserNickname";
+import { FaHome } from "react-icons/fa";
+import { PiStudent } from "react-icons/pi";
+import { usePathname } from "next/navigation";
 
 export const Aside = ({ profile }: AsideProps) => {
     const links = [
-        { title: "Хоум", link: "/" },
-        { title: "Мій кабінет", link: profile ? "/profile" : "/login" },
+        {
+            title: "Хоум",
+            link: "/",
+            icon: <FaHome className="size-6" />,
+        },
+        {
+            title: "Мій кабінет",
+            link: profile ? "/profile" : "/login",
+            icon: <AiOutlineUser className="size-6" />,
+        },
+        {
+            title: "Students",
+            link: "/students",
+            icon: <PiStudent className="size-6" />,
+        },
     ];
 
-    const router = useRouter();
     const dispatch = useAppDispatch();
-    const aside = useAppSelector(selectAside);
+    const pathname = usePathname();
 
     const [activeLink, setActiveLink] = useState<string | null>(null);
+
+    const aside = useAppSelector(selectAside);
 
     const setIsAsideOpenedHandler = (value: boolean) => {
         dispatch(setIsAsideOpened(value));
     };
 
-    const onLogoutClick = () => {
-        setCookie("token", "");
-        toast.success("Ви успішно вийшли з акаунту!");
-        router.refresh();
-    };
+    useEffect(() => {
+        setIsAsideOpenedHandler(false);
+    }, [pathname]);
 
     return (
         <>
@@ -55,101 +64,42 @@ export const Aside = ({ profile }: AsideProps) => {
                 />
             )}
             <aside
-                className={`min-h-[100vh] h-full top-0 left-0 bottom-0 w-[300px] fixed lg:relative lg:w-full z-50 lg:z-0 bg-[#10091b] lg:bg-blackOpacity-dark p-2 xsm:p-4 shadow-lg 
+                className={`min-h-[100vh] h-full top-0 left-0 bottom-0 w-[260px] fixed lg:relative lg:w-full z-50 lg:z-0 bg-[#10091b] lg:bg-blackOpacity-dark p-4 shadow-lg 
                 transition-transform duration-300 ${
                     aside ? "translate-x-0" : "-translate-x-full"
                 } lg:translate-x-0`}
             >
-                <div className="xsm:mt-10 mt-4">
+                <div className="xsm:mt-6 mt-4">
                     <Link
                         href="/"
-                        className="mx-4 text-white text-2xl flex items-center gap-2"
+                        className="text-white text-2xl flex items-center gap-2"
                         onClick={() => setActiveLink("Усі квести")}
                     >
                         <GiThink className="size-12" />
                         <span>QuizzApp</span>
                     </Link>
-                    {!profile ? (
-                        <div className="flex mt-4 xsm:mt-8 mx-4 items-center gap-4 bg-blackOpacity p-2">
-                            <div className="p-1 w-12 h-12 border-purple border-2 rounded-md xsm:p-3 flex justify-center items-center">
-                                <AiOutlineUser className="text-purple size-6" />
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <Link
-                                    className="text-yellow hover:text-yellow-light"
-                                    href="/login"
-                                    onClick={() =>
-                                        setIsAsideOpenedHandler(false)
-                                    }
-                                >
-                                    Увійти
-                                </Link>
-                                <div className="w-[1px] h-8 bg-gray-dark"></div>
-                                <Link
-                                    href="/register"
-                                    onClick={() =>
-                                        setIsAsideOpenedHandler(false)
-                                    }
-                                >
-                                    Реєстрація
-                                </Link>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="flex mt-4 xsm:mt-8 mx-4 gap-4 bg-blackOpacity p-2 relative">
-                            <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
-                                {!profile.avatarUrl ? (
-                                    <AiOutlineUser className="text-purple size-6" />
-                                ) : (
-                                    <Image
-                                        src={profile.avatarUrl}
-                                        alt={
-                                            (profile.firstName || "") +
-                                            " " +
-                                            (profile.lastName || "")
-                                        }
-                                        width={0}
-                                        height={0}
-                                        sizes="100vw"
-                                        className="w-full h-full object-cover"
-                                    />
-                                )}
-                            </div>
-                            <div>
-                                <Link href="/profile" className="text-white">
-                                    {printUserNickname(
-                                        profile.firstName,
-                                        profile.lastName,
-                                    )}
-                                </Link>
-                                <button
-                                    onClick={onLogoutClick}
-                                    className="text-gray-dark flex items-center gap-1 text-sm mt-1"
-                                >
-                                    <RiLogoutBoxLine />
-                                    <span>Log out</span>
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                    <nav className="mt-4 xsm:mt-8 text-lg">
+
+                    <nav className="text-lg mt-8">
                         <ul>
                             {links.map((link, index) => (
                                 <li
-                                    className="relative flex items-center mt-5 transition-all"
+                                    className="relative flex items-center mt-6 transition-all"
                                     key={index}
                                 >
                                     <Link
                                         href={link.link}
-                                        className="ml-2 text-white"
+                                        className="ml-2 flex items-center gap-4 text-white"
                                         onClick={() =>
                                             setActiveLink(link.title)
                                         }
                                     >
+                                        <div className="size-6">
+                                            {link.icon}
+                                        </div>
                                         {link.title}
                                     </Link>
                                     <div
-                                        className={`absolute -left-2 xsm:-left-4 flex items-center transition-all duration-300 ${
+                                        className={`absolute -left-4 flex items-center transition-all duration-300 ${
                                             activeLink === link.title
                                                 ? "opacity-100"
                                                 : "opacity-0"
