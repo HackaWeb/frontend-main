@@ -49,6 +49,8 @@ export const LoginPageComponent = () => {
                     router.push("/profile");
                     clearTimeout(timeout);
                 }, 1000);
+            } else {
+                toast.error(SOMETHING_WRONG_MESSAGE);
             }
         } catch (error) {
             console.error(error);
