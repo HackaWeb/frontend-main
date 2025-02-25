@@ -62,10 +62,8 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
     let profile = null;
 
     if (!token && refreshToken) {
-        console.log("123");
         try {
             const res = await refreshTokenHandler({ refreshToken });
-            console.log(res);
 
             if (res.token) {
                 setCookie("token", res.token);
@@ -82,7 +80,6 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
     }
 
     if (token) {
-        console.log("token exists");
         try {
             const profileData = await getProfile();
             profile = "email" in profileData ? profileData : null;
