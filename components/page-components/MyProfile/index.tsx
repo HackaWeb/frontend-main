@@ -7,7 +7,10 @@ import { slideFromBottomAnimation } from "@/constants";
 import { LeftColumnProfile } from "@/components/common/LeftColumnProfile";
 import { ProfileForm } from "@/components/common/ProfileForm";
 import { Table } from "@/components/ui/Table";
-import { FaEdit, FaTrashAlt, FaExternalLinkAlt } from "react-icons/fa"; // иконки
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { Input } from "@/components/ui/Input";
+import { Select } from "@/components/ui/Select";
+import { Button } from "@/components/ui/Button";
 
 export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     const headers = ["ID", "Name", "Email", "Role", "Actions"];
@@ -19,22 +22,14 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "john.doe@example.com",
             "Admin",
             <div className="flex gap-2">
-                <button className="p-2 bg-blue-500 text-white rounded flex items-center gap-1">
+                <Button color="purpleBorder">
                     <FaEdit />
                     Edit
-                </button>
-                <button className="p-2 bg-red-500 text-white rounded flex items-center gap-1">
+                </Button>
+                <Button color="redBorder">
                     <FaTrashAlt />
                     Delete
-                </button>
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    className="p-2 bg-green-500 text-white rounded flex items-center gap-1"
-                >
-                    <FaExternalLinkAlt />
-                    Visit
-                </a>
+                </Button>
             </div>,
         ],
         [
@@ -43,22 +38,14 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "jane.smith@example.com",
             "User",
             <div className="flex gap-2">
-                <button className="p-2 bg-blue-500 text-white rounded flex items-center gap-1">
+                <Button color="purpleBorder">
                     <FaEdit />
                     Edit
-                </button>
-                <button className="p-2 bg-red-500 text-white rounded flex items-center gap-1">
+                </Button>
+                <Button color="redBorder">
                     <FaTrashAlt />
                     Delete
-                </button>
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    className="p-2 bg-green-500 text-white rounded flex items-center gap-1"
-                >
-                    <FaExternalLinkAlt />
-                    Visit
-                </a>
+                </Button>
             </div>,
         ],
         [
@@ -67,22 +54,14 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
             "mark.johnson@example.com",
             "Moderator",
             <div className="flex gap-2">
-                <button className="p-2 bg-blue-500 text-white rounded flex items-center gap-1">
+                <Button color="purpleBorder">
                     <FaEdit />
                     Edit
-                </button>
-                <button className="p-2 bg-red-500 text-white rounded flex items-center gap-1">
+                </Button>
+                <Button color="redBorder">
                     <FaTrashAlt />
                     Delete
-                </button>
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    className="p-2 bg-green-500 text-white rounded flex items-center gap-1"
-                >
-                    <FaExternalLinkAlt />
-                    Visit
-                </a>
+                </Button>
             </div>,
         ],
         [
@@ -99,14 +78,6 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     <FaTrashAlt />
                     Delete
                 </button>
-                <a
-                    href="https://example.com"
-                    target="_blank"
-                    className="p-2 bg-green-500 text-white rounded flex items-center gap-1"
-                >
-                    <FaExternalLinkAlt />
-                    Visit
-                </a>
             </div>,
         ],
     ];
@@ -123,7 +94,34 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     <LeftColumnProfile profile={profile} isEditable={true} />
                 </div>
                 <ProfileForm profile={profile} isEditable={true} />
-                <Table headers={headers} data={data} />
+                <div className="bg-blackOpacity-light p-4 rounded-md">
+                    <div className="flex justify-between">
+                        <Input
+                            placeholder="Search data..."
+                            className="max-w-60"
+                        />
+                        <div className="flex items-center gap-4">
+                            <div className="w-40">
+                                <Select
+                                    options={[
+                                        { value: "1", title: "ID" },
+                                        { value: "2", title: "Name" },
+                                        { value: "3", title: "Email" },
+                                        { value: "4", title: "Role" },
+                                    ]}
+                                    placeholder="Sort by"
+                                    activeOption={null}
+                                    setActiveOption={() => {}}
+                                    id="sort-by"
+                                />
+                            </div>
+                            <Button className="" color="purpleBackground">
+                                New Data
+                            </Button>
+                        </div>
+                    </div>
+                    <Table className="mt-4" headers={headers} data={data} />
+                </div>
             </div>
         </motion.div>
     );
