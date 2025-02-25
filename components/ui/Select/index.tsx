@@ -3,10 +3,10 @@
 import { useRef, useState } from "react";
 import { SelectOption } from "@/types/selectOption.interface";
 import { SelectProps } from "./Select.props";
-import { AiOutlineDown } from "react-icons/ai";
 import { cn } from "@/helpers/cn";
 import { onOutsideClick } from "@/helpers/onOutsideClick";
 import { Variants, motion } from "framer-motion";
+import { IoIosArrowDown } from "react-icons/io";
 
 const selectVariants: Variants = {
     hidden: { opacity: 0, y: -10 },
@@ -55,7 +55,7 @@ export const Select = ({
                 ) : (
                     <span className="text-gray">{placeholder}</span>
                 )}
-                <AiOutlineDown
+                <IoIosArrowDown
                     className="text-gray transition-transform"
                     style={{
                         transform: isOptionsOpened
