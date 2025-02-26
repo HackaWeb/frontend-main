@@ -6,7 +6,7 @@ import { cn } from "@/helpers/cn";
 import { ThemeSwitchProps } from "./ThemeSwitch.props";
 import { useRouter } from "@/helpers/navigation";
 
-export const ThemeSwitch = ({ theme }: ThemeSwitchProps) => {
+export const ThemeSwitch = ({ theme = "dark" }: ThemeSwitchProps) => {
     const router = useRouter();
 
     const isDarkTheme = async () => {
