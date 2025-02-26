@@ -19,14 +19,13 @@ const data = [
 ];
 
 export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
-    console.log(profile);
     return (
         profile && (
             <motion.div
                 {...slideFromBottomAnimation}
                 className="mt-8 bg-secondary-light p-6 rounded-md"
             >
-                <h1>
+                <h1 className="text-primary">
                     Профіль користувача{" "}
                     {printUserNickname(profile.firstName, profile.lastName)}
                 </h1>
@@ -46,7 +45,7 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
                         />
                         <div>
                             <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
-                                <div className="text-white font-semibold text-lg">
+                                <div className="text-primary font-semibold text-lg">
                                     Table Title
                                 </div>
                                 <Table
