@@ -13,9 +13,8 @@ import { GiThink } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
 import { usePathname } from "next/navigation";
-import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
 
-export const Aside = ({ profile, theme }: AsideProps) => {
+export const Aside = ({ profile }: AsideProps) => {
     const links = [
         {
             title: "Хоум",
@@ -71,17 +70,14 @@ export const Aside = ({ profile, theme }: AsideProps) => {
                 } lg:translate-x-0`}
             >
                 <div className="xsm:mt-6 mt-4">
-                    <div className="flex justify-between place-items-center ">
-                        <Link
-                            href="/"
-                            className="text-primary text-2xl flex items-center gap-2"
-                            onClick={() => setActiveLink("Усі квести")}
-                        >
-                            <GiThink className="size-12" />
-                            <span>QuizzApp</span>
-                        </Link>
-                        <ThemeSwitch theme={theme} />
-                    </div>
+                    <Link
+                        href="/"
+                        className="text-primary text-2xl flex items-center gap-2"
+                        onClick={() => setActiveLink("Усі квести")}
+                    >
+                        <GiThink className="size-12" />
+                        <span>QuizzApp</span>
+                    </Link>
 
                     <nav className="text-lg mt-8">
                         <ul>

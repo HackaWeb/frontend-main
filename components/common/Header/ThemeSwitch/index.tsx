@@ -25,13 +25,13 @@ export const ThemeSwitch = ({ theme }: ThemeSwitchProps) => {
                 handleThemeSwitch();
             }}
             className={cn(
-                "cursor-pointer w-12 h-6 rounded-full relative transition-colors duration-200",
-                theme === "dark" ? "bg-gray-500" : "bg-white",
+                "cursor-pointer w-14 h-8 rounded-full relative transition-colors duration-200",
+                theme === "dark" ? "bg-gray-800" : "bg-white",
             )}
         >
             <div
                 className={`
-                    absolute top-0.5 left-0.5 w-5 h-5 rounded-full 
+                    absolute top-0.5 left-0.5 w-7 h-7 rounded-full 
                     flex items-center justify-center
                     transition-transform duration-200 ease-in-out
                     ${
@@ -42,9 +42,9 @@ export const ThemeSwitch = ({ theme }: ThemeSwitchProps) => {
                 `}
             >
                 {theme === "dark" ? (
-                    <BsMoon className="size-3 text-primary" />
+                    <BsMoon className="size-6 text-primary p-1" />
                 ) : (
-                    <BsSun className="size-3 text-primary" />
+                    <BsSun className="size-6 text-primary p-1" />
                 )}
             </div>
         </div>

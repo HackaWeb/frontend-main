@@ -13,8 +13,9 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { Language } from "./Language";
 import { Messages } from "./Messages";
+import { ThemeSwitch } from "./ThemeSwitch";
 
-export const Header = ({ profile }: HeaderProps) => {
+export const Header = ({ profile, theme }: HeaderProps) => {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
@@ -29,70 +30,75 @@ export const Header = ({ profile }: HeaderProps) => {
     };
 
     return (
-        <header className="p-4 xsm:p-6 bg-secondary-light rounded-md flex flex-col xsm:flex-row gap-4 justify-end items-center">
-            <Language />
-            {!profile ? (
-                <div className="flex items-center gap-4 bg-secondary p-2">
-                    <div className="p-1 w-12 h-12 border-purple border-2 rounded-md xsm:p-3 flex justify-center items-center">
-                        <AiOutlineUser className="text-purple size-6" />
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <Link
-                            className="text-yellow-light hover:text-yellow-dark"
-                            href="/login"
-                            onClick={() => setIsAsideOpenedHandler(false)}
-                        >
-                            Увійти
-                        </Link>
-                        <div className="w-[1px] h-8 bg-gray-dark"></div>
-                        <Link
-                            href="/register"
-                            onClick={() => setIsAsideOpenedHandler(false)}
-                        >
-                            Реєстрація
-                        </Link>
-                    </div>
-                </div>
-            ) : (
-                <div className="flex items-center gap-4">
-                    <div className="flex bg-secondary p-2 relative w-auto rounded-md">
-                        <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
-                            {!profile.avatarUrl ? (
-                                <AiOutlineUser className="text-purple size-6" />
-                            ) : (
-                                <Image
-                                    src={profile.avatarUrl}
-                                    alt={
-                                        (profile.firstName || "") +
-                                        " " +
-                                        (profile.lastName || "")
-                                    }
-                                    width={0}
-                                    height={0}
-                                    sizes="100vw"
-                                    className="w-full h-full object-cover"
-                                />
-                            )}
+        <header className="p-4 xsm:p-6 bg-secondary-light rounded-md flex justify-between items-center">
+            <div className="flex items-center gap-4">
+                <Language />
+                <ThemeSwitch theme={theme} />
+            </div>
+            <div className="flex items-center gap-4">
+                {!profile ? (
+                    <div className="flex items-center gap-4 bg-secondary p-2">
+                        <div className="p-1 w-12 h-12 border-purple border-2 rounded-md xsm:p-3 flex justify-center items-center">
+                            <AiOutlineUser className="text-purple size-6" />
                         </div>
-                        <div className="mx-4">
-                            <Link href="/profile" className="text-white">
-                                {printUserNickname(
-                                    profile.firstName,
-                                    profile.lastName,
-                                )}
-                            </Link>
-                            <button
-                                onClick={onLogoutClick}
-                                className="text-gray-dark flex items-center gap-1 text-sm mt-1"
+                        <div className="flex items-center gap-2">
+                            <Link
+                                className="text-yellow-light hover:text-yellow-dark"
+                                href="/login"
+                                onClick={() => setIsAsideOpenedHandler(false)}
                             >
-                                <RiLogoutBoxLine />
-                                <span>Log out</span>
-                            </button>
+                                Увійти
+                            </Link>
+                            <div className="w-[1px] h-8 bg-gray-dark"></div>
+                            <Link
+                                href="/register"
+                                onClick={() => setIsAsideOpenedHandler(false)}
+                            >
+                                Реєстрація
+                            </Link>
                         </div>
                     </div>
-                    <Messages />
-                </div>
-            )}
+                ) : (
+                    <div className="flex items-center gap-4">
+                        <div className="flex bg-secondary p-2 relative w-auto rounded-md">
+                            <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
+                                {!profile.avatarUrl ? (
+                                    <AiOutlineUser className="text-purple size-6" />
+                                ) : (
+                                    <Image
+                                        src={profile.avatarUrl}
+                                        alt={
+                                            (profile.firstName || "") +
+                                            " " +
+                                            (profile.lastName || "")
+                                        }
+                                        width={0}
+                                        height={0}
+                                        sizes="100vw"
+                                        className="w-full h-full object-cover"
+                                    />
+                                )}
+                            </div>
+                            <div className="mx-4">
+                                <Link href="/profile" className="text-white">
+                                    {printUserNickname(
+                                        profile.firstName,
+                                        profile.lastName,
+                                    )}
+                                </Link>
+                                <button
+                                    onClick={onLogoutClick}
+                                    className="text-gray-dark flex items-center gap-1 text-sm mt-1"
+                                >
+                                    <RiLogoutBoxLine />
+                                    <span>Log out</span>
+                                </button>
+                            </div>
+                        </div>
+                        <Messages />
+                    </div>
+                )}
+            </div>
         </header>
     );
 };

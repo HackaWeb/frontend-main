@@ -1,5 +1,5 @@
+import { Theme } from "@/types/theme.type";
+
 export interface ThemeSwitchProps {
     theme: Theme | null;
 }
-
-export type Theme = "dark" | "light";
