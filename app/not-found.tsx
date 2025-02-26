@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NotFound = () => {
     return (
-        <div className="mt-10 text-center">
+        <div className="mt-10 text-center text-primary">
             <h1>Упс!</h1>
             <div className="text-xl mt-3">Такої сторінки не знайдено</div>
             <Link

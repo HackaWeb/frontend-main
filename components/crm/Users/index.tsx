@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Table } from "@/components/ui/Table";
+import Image from "next/image";
+import Link from "next/link";
+import { AiOutlineUser } from "react-icons/ai";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
 
 export const UsersPageComponent = ({ users }: { users: any[] }) => {
@@ -22,13 +25,32 @@ export const UsersPageComponent = ({ users }: { users: any[] }) => {
     ];
 
     const data = users.map((user) => [
-        user.id,
-        <img
-            src={user.avatar}
-            alt={user.name}
-            className="w-10 h-10 rounded-full"
+        <Link href={`/crm/users/${user.id}`} key={user.id}>
+            {user.id}
+        </Link>,
+        <div
+            className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center"
             key={user.id}
-        />,
+        >
+            {!user.avatarUrl ? (
+                <AiOutlineUser className="text-purple size-6" />
+            ) : (
+                <img
+                    src={user.avatarUrl}
+                    key={user.id}
+                    alt="User"
+                    className="w-full h-full object-cover"
+                />
+                /* <Image
+                    src={user.avatarUrl}
+                    alt={(user.firstName || "") + " " + (user.lastName || "")}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    className="w-full h-full object-cover"
+                /> */
+            )}
+        </div>,
         user.name,
         user.email,
         user.phone,

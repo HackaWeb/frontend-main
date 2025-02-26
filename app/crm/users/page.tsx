@@ -2,7 +2,7 @@ import { UsersPageComponent } from "@/components/crm/Users";
 
 const users = Array.from({ length: 50 }, (_, index) => ({
     id: index + 1,
-    avatar: `https://i.pravatar.cc/50?img=${index + 1}`,
+    avatarUrl: `https://i.pravatar.cc/50?img=${index + 1}`,
     name: `User ${index + 1}`,
     email: `user${index + 1}@example.com`,
     phone: `+1 555-012${index.toString().padStart(2, "0")}`,
