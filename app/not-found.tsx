@@ -4,10 +4,10 @@ const NotFound = () => {
     return (
         <div className="mt-10 text-center">
             <h1>Упс!</h1>
-            <div className="text-xl">Такої сторінки не знайдено</div>
+            <div className="text-xl mt-3">Такої сторінки не знайдено</div>
             <Link
                 href="/"
-                className="text-purple hover:text-purple-dark duration-300 mt-5"
+                className="text-purple hover:text-purple-dark duration-300 mt-1 block"
             >
                 Повернутися на головну...
             </Link>

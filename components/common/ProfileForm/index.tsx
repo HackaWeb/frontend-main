@@ -9,7 +9,7 @@ import { ProfileFormProps } from "./ProfileForm.props";
 import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 
-export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
+export const ProfileForm = ({ profile, isEditable, isSelfProfile }: ProfileFormProps) => {
     const router = useRouter();
 
     const [userData, setUserData] = useState({
@@ -46,9 +46,7 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
                 <LabelInput
                     id="email"
                     labelTitle={
-                        isEditable
-                            ? "Ваша пошта"
-                            : `Пошта користувача ${profile.firstName} ${profile.lastName}`
+                        isSelfProfile ? "Ваша пошта" : `Пошта користувача`
                     }
                     value={profile.email}
                     type="email"
@@ -58,10 +56,13 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
                 />
                 <LabelInput
                     id="firstName"
-                    labelTitle={isEditable ? "Ваше імʼя" : "Імʼя користувача"}
+                    labelTitle={
+                        isSelfProfile ? "Ваше імʼя" : "Імʼя користувача"
+                    }
                     value={userData.firstName}
                     type="text"
-                    placeholder="Введіть ім'я..."
+                    placeholder={isEditable ? "Введіть ім'я..." : ""}
+                    disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({
                             ...userData,
@@ -73,11 +74,12 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
                 <LabelInput
                     id="lastName"
                     labelTitle={
-                        isEditable ? "Ваше прізвище" : "Прізвище користувача"
+                        isSelfProfile ? "Ваше прізвище" : "Прізвище користувача"
                     }
                     value={userData.lastName}
                     type="text"
-                    placeholder="Введіть прізвище..."
+                    placeholder={isEditable ? "Введіть прізвище..." : ""}
+                    disabled={!isEditable}
                     onChange={(e) =>
                         setUserData({
                             ...userData,
@@ -86,13 +88,15 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
                     }
                     className="mt-6"
                 />
-                <Button
-                    type="submit"
-                    color="purpleBackground"
-                    className="mt-6 mx-auto mb-2"
-                >
-                    Зберегти зміни
-                </Button>
+                {isEditable && (
+                    <Button
+                        type="submit"
+                        color="purpleBackground"
+                        className="mt-6 mx-auto mb-2"
+                    >
+                        Зберегти зміни
+                    </Button>
+                )}
             </form>
         </div>
     );

@@ -62,12 +62,15 @@ export const RegisterPageComponent = () => {
                     router.push("/profile");
                     clearTimeout(timeout);
                 }, 1000);
+            } else {
+                setIsLoading(false);
+                toast.error(SOMETHING_WRONG_MESSAGE);
             }
         } catch (error) {
+            setIsLoading(false);
             console.error(error);
-            return [SOMETHING_WRONG_MESSAGE];
+            toast.error(SOMETHING_WRONG_MESSAGE);
         }
-        setIsLoading(false);
     };
 
     return (

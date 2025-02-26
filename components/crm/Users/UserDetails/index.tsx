@@ -18,7 +18,7 @@ const data = [
     [4, "Emily Davis", "emily.davis@example.com", "User"],
 ];
 
-export const UserProfilePageComponent = ({ profile }: UserProfileProps) => {
+export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
     console.log(profile);
     return (
         profile && (
@@ -35,13 +35,13 @@ export const UserProfilePageComponent = ({ profile }: UserProfileProps) => {
                     <div>
                         <LeftColumnProfile
                             profile={profile}
-                            isEditable={false}
+                            isEditable={true}
                         />
                     </div>
                     <div className="overflow-hidden">
                         <ProfileForm
                             profile={profile}
-                            isEditable={false}
+                            isEditable={true}
                             isSelfProfile={false}
                         />
                         <div>

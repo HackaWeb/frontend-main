@@ -1,8 +1,8 @@
 import { getUser } from "@/apis/users";
-import { UserProfilePageComponent } from "@/components/page-components/UserProfile";
+import { UserDetailsPageComponent } from "@/components/crm/Users/UserDetails";
 import { notFound } from "next/navigation";
 
-const UserProfile = async ({ params }: { params: Promise<{ id: string }> }) => {
+const UserDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
     const userId = (await params).id;
 
     const getUserHandler = async () => {
@@ -22,7 +22,7 @@ const UserProfile = async ({ params }: { params: Promise<{ id: string }> }) => {
     const user = await getUserHandler();
     if (!user) notFound();
 
-    return <UserProfilePageComponent profile={user} />;
+    return <UserDetailsPageComponent profile={user} />;
 };
 
-export default UserProfile;
+export default UserDetails;
