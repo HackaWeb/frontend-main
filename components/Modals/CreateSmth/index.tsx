@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { BsFillImageFill } from "react-icons/bs";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 import { motion } from "framer-motion";
 import { popAnimation, popAnimationWithTransform } from "@/constants";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";

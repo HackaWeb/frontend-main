@@ -1,8 +1,8 @@
 import { googleAuth } from "@/apis/auth";
 import { setCookie } from "@/helpers/setCookie";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import { useRouter } from "@/helpers/navigation";
 
 export const GoogleAuthButton = () => {
     const router = useRouter();

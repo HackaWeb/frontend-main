@@ -1,7 +1,8 @@
 import { getProfile } from "@/apis/profile";
 import { MyProfilePageComponent } from "@/components/page-components/MyProfile";
 import { getCookie } from "@/helpers/getCookie";
-import { redirect } from "next/navigation";
+import { redirect } from "@/helpers/navigation";
+import { UserProfile } from "@/types/user.interface";
 
 const MyProfile = async () => {
     const token = await getCookie("token");
@@ -30,7 +31,7 @@ const MyProfile = async () => {
         redirect("/login");
     }
 
-    return <MyProfilePageComponent profile={profile} />;
+    return <MyProfilePageComponent profile={profile as UserProfile} />;
 };
 
 export default MyProfile;

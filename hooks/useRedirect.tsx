@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 
 export const useRedirect = () => {
     const router = useRouter();

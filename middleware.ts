@@ -1,17 +1,18 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import createMiddleware from "next-intl/middleware";
 
-export default function middleware(request: NextRequest) {
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.set("x-next-pathname", request.nextUrl.pathname);
+const intlMiddleware = createMiddleware({
+    locales: ["uk", "en"],
+    defaultLocale: "uk",
+});
 
-    return NextResponse.next({
-        request: {
-            headers: requestHeaders,
-        },
-    });
+export function middleware(request: NextRequest) {
+    const response = intlMiddleware(request);
+
+    response.headers.set("x-next-pathname", request.nextUrl.pathname);
+    return response;
 }
 
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+    matcher: ["/", "/(en|uk)/:path*"],
 };

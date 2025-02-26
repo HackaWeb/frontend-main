@@ -1,7 +1,7 @@
 "use client";
 
 import { ReturnBtn } from "@/components/ui/ReturnBtn";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/helpers/navigation";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { slideFromBottomAnimation } from "@/constants";

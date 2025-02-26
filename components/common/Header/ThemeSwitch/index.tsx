@@ -2,9 +2,9 @@
 
 import { BsSun, BsMoon } from "react-icons/bs";
 import { setCookie } from "@/helpers/setCookie";
-import { useRouter } from "next/navigation";
 import { cn } from "@/helpers/cn";
 import { ThemeSwitchProps } from "./ThemeSwitch.props";
+import { useRouter } from "@/helpers/navigation";
 
 export const ThemeSwitch = ({ theme }: ThemeSwitchProps) => {
     const router = useRouter();

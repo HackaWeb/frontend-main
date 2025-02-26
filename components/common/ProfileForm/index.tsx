@@ -4,12 +4,16 @@ import { Button } from "@/components/ui/Button";
 import { LabelInput } from "@/components/ui/LabelInput";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 import { ProfileFormProps } from "./ProfileForm.props";
 import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 
-export const ProfileForm = ({ profile, isEditable, isSelfProfile }: ProfileFormProps) => {
+export const ProfileForm = ({
+    profile,
+    isEditable,
+    isSelfProfile,
+}: ProfileFormProps) => {
     const router = useRouter();
 
     const [userData, setUserData] = useState({

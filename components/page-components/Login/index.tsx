@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/Button";
 import { LabelInput } from "@/components/ui/LabelInput";
 import { setCookie } from "@/helpers/setCookie";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { ImSpinner2 } from "react-icons/im";
@@ -13,6 +12,7 @@ import { validateEmail } from "@/helpers/validateEmail";
 import { cn } from "@/helpers/cn";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { GoogleAuthButton } from "@/components/common/GoogleAuthButton";
+import { useRouter } from "@/helpers/navigation";
 
 export const LoginPageComponent = () => {
     const router = useRouter();

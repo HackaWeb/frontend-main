@@ -8,7 +8,7 @@ import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 import { cn } from "@/helpers/cn";
 import { setCookie } from "@/helpers/setCookie";
 import { validateEmail } from "@/helpers/validateEmail";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 import { FormEvent, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { toast } from "react-toastify";

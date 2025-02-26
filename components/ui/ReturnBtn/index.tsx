@@ -4,7 +4,7 @@ import { TbArrowBackUp } from "react-icons/tb";
 import { Button } from "../Button";
 import { ReturnBtnProps } from "./ReturnBtn.props";
 import { cn } from "@/helpers/cn";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { closeModal, selectOpenedModal } from "@/store/slices/openedModal";
 import { useAppSelector } from "@/store/hooks/useAppSelector";

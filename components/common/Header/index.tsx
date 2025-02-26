@@ -3,19 +3,18 @@
 import { useAppDispatch } from "@/store/hooks/useAppDispatch";
 import { setIsAsideOpened } from "@/store/slices/aside";
 import Image from "next/image";
-import Link from "next/link";
 import { AiOutlineUser } from "react-icons/ai";
 import { HeaderProps } from "./Header.props";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { printUserNickname } from "@/helpers/printUserNickname";
 import { setCookie } from "@/helpers/setCookie";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import { Language } from "./Language";
 import { Messages } from "./Messages";
 import { ThemeSwitch } from "./ThemeSwitch";
+import { Link, useRouter } from "@/helpers/navigation";
 
-export const Header = ({ profile, theme }: HeaderProps) => {
+export const Header = ({ profile, theme, defaultLocale }: HeaderProps) => {
     const dispatch = useAppDispatch();
     const router = useRouter();
 
@@ -32,7 +31,7 @@ export const Header = ({ profile, theme }: HeaderProps) => {
     return (
         <header className="p-4 sm:p-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
             <div className="flex items-center gap-4">
-                <Language />
+                <Language defaultLocale={defaultLocale} />
                 <ThemeSwitch theme={theme} />
             </div>
             <div className="flex items-center gap-4">

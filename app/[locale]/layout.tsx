@@ -15,6 +15,9 @@ import { GoogleAuthProvider } from "@/components/providers/Google";
 import { refreshToken as refreshTokenHandler } from "@/apis/auth";
 import { Header } from "@/components/common/Header";
 import { Theme } from "@/types/theme.type";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Locale } from "@/types/locale.type";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -26,9 +29,11 @@ const inter = Inter({
 
 interface RootLayoutProps {
     children: ReactNode;
+    params: Promise<{ locale: Locale }>;
 }
 
-const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
+const RootLayout = async ({ children, params }: Readonly<RootLayoutProps>) => {
+    const locale = (await params).locale;
     let token = await getCookie("token");
     const theme = await getCookie<Theme>("theme");
     const refreshToken = await getCookie("refreshToken");
@@ -66,32 +71,40 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
         }
     }
 
+    const messages = await getMessages();
+
     return (
-        <html lang="en">
-            <body
-                className={cn(
-                    "grid grid-cols-[1fr] lg:grid-cols-[280px_1fr] relative",
-                    inter.variable,
-                    theme || "dark",
-                )}
-            >
-                <LayoutBackground />
-                <GoogleAuthProvider>
-                    <ReduxProvider>
-                        <Aside profile={profile} />
-                        <div className="p-2">
-                            <Header profile={profile} theme={theme} />
-                            <main className="mt-6">{children}</main>
-                        </div>
-                        <div className="fixed -z-10 bg-[#8C55FE] bg-opacity-40 w-[550px] h-[550px] -left-[160px] top-0 blur-[500px]"></div>
-                        <div className="fixed -z-10 bg-[#00D1FF] bg-opacity-20 w-[550px] h-[550px] left-[50%] top-[50%] blur-[500px] -translate-x-[50%]"></div>
-                        <div className="fixed -z-10 bg-[#BD00FF] bg-opacity-20 w-[550px] h-[550px] -right-[150px] -bottom-[100px] blur-[500px]"></div>
-                        <Modals />
-                        <ToastProvider />
-                    </ReduxProvider>
-                </GoogleAuthProvider>
-            </body>
-        </html>
+        <NextIntlClientProvider messages={messages}>
+            <html lang="en">
+                <body
+                    className={cn(
+                        "grid grid-cols-[1fr] lg:grid-cols-[280px_1fr] relative",
+                        inter.variable,
+                        theme || "dark",
+                    )}
+                >
+                    <LayoutBackground />
+                    <GoogleAuthProvider>
+                        <ReduxProvider>
+                            <Aside profile={profile} />
+                            <div className="p-2">
+                                <Header
+                                    profile={profile}
+                                    theme={theme}
+                                    defaultLocale={locale}
+                                />
+                                <main className="mt-6">{children}</main>
+                            </div>
+                            <div className="fixed -z-10 bg-[#8C55FE] bg-opacity-40 w-[550px] h-[550px] -left-[160px] top-0 blur-[500px]"></div>
+                            <div className="fixed -z-10 bg-[#00D1FF] bg-opacity-20 w-[550px] h-[550px] left-[50%] top-[50%] blur-[500px] -translate-x-[50%]"></div>
+                            <div className="fixed -z-10 bg-[#BD00FF] bg-opacity-20 w-[550px] h-[550px] -right-[150px] -bottom-[100px] blur-[500px]"></div>
+                            <Modals />
+                            <ToastProvider />
+                        </ReduxProvider>
+                    </GoogleAuthProvider>
+                </body>
+            </html>
+        </NextIntlClientProvider>
     );
 };
 

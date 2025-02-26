@@ -5,7 +5,7 @@ import { AiOutlineUser, AiOutlineClose } from "react-icons/ai";
 import { Button } from "@/components/ui/Button";
 import { deleteProfileImage, updateProfileImage } from "@/apis/profile";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/helpers/navigation";
 import Image from "next/image";
 import { LeftColumnProfileProps } from "./LeftColumnProfile.props";
 import { motion } from "framer-motion";

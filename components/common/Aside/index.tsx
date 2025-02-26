@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { AiOutlineUser } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@/store/hooks/useAppSelector";
@@ -12,7 +11,8 @@ import { AsideProps } from "./Aside.props";
 import { GiThink } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/helpers/navigation";
+import { Link } from "@/helpers/navigation";
 
 export const Aside = ({ profile }: AsideProps) => {
     const links = [

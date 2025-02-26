@@ -7,4 +7,5 @@ export interface SelectProps {
     setActiveOption: (option: SelectOption) => void;
     id: string;
     className?: string;
+    onChange?: (selectOption: SelectOption) => void;
 }

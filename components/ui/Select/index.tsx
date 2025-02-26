@@ -23,6 +23,7 @@ export const Select = ({
     id,
     className,
     placeholder,
+    onChange,
 }: SelectProps) => {
     const selectRef = useRef<HTMLDivElement>(null);
 
@@ -31,6 +32,7 @@ export const Select = ({
     const onSelectOptionClick = (option: SelectOption) => {
         setActiveOption(option);
         setIsOptionsOpened(false);
+        onChange && onChange(option);
     };
 
     onOutsideClick(selectRef, () => {
