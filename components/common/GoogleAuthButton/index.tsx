@@ -32,7 +32,7 @@ export const GoogleAuthButton = () => {
         <div className="mt-10">
             <div>Або авторизуватися через соц. мережі</div>
             <div className="flex justify-center mx-auto mt-3">
-                <div className="mx-auto bg-blackOpacity-dark p-2 rounded-md">
+                <div className="mx-auto bg-secondary-dark p-2 rounded-md">
                     <GoogleLogin
                         onSuccess={onAuthClick}
                         onError={() => console.log("error")}

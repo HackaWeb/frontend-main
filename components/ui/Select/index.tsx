@@ -48,12 +48,12 @@ export const Select = ({
                     setIsOptionsOpened(!isOptionsOpened);
                 }}
                 type="button"
-                className="w-full flex justify-between items-center px-4 py-3 bg-blackOpacity text-white rounded-md focus:outline-none"
+                className="w-full flex justify-between items-center px-4 py-3 bg-secondary text-primary rounded-md focus:outline-none"
             >
                 {activeOption ? (
                     activeOption.title
                 ) : (
-                    <span className="text-gray">{placeholder}</span>
+                    <span className="text-primary">{placeholder}</span>
                 )}
                 <IoIosArrowDown
                     className="text-gray transition-transform"
@@ -70,7 +70,7 @@ export const Select = ({
                     animate="visible"
                     exit="hidden"
                     variants={selectVariants}
-                    className="absolute left-0 top-full mt-1 w-full bg-[#201f2d] text-gray rounded-md shadow-lg z-10 overflow-hidden"
+                    className="absolute left-0 top-full mt-1 w-full bg-modalBg text-primary rounded-md shadow-lg z-10 overflow-hidden"
                     transition={{
                         transition: {
                             type: "tween",
@@ -82,7 +82,7 @@ export const Select = ({
                         <li
                             key={index}
                             onClick={() => onSelectOptionClick(option)}
-                            className="px-4 py-3 cursor-pointer hover:bg-blackOpacity-light transition-colors"
+                            className="px-4 py-3 cursor-pointer hover:bg-secondary-light transition-colors"
                         >
                             {option.title}
                         </li>

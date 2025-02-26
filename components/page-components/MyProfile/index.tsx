@@ -96,8 +96,8 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                 <div className="overflow-hidden">
                     <ProfileForm profile={profile} isEditable={true} isSelfProfile={true} />
                     <div>
-                        <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
-                            <div className="text-white font-semibold text-lg">
+                        <div className=" p-4 rounded-md mt-6 overflow-hidden">
+                            <div className="text-primary font-semibold text-lg">
                                 Table Title
                             </div>
                             <Table
@@ -106,7 +106,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                                 data={data}
                             />
                         </div>
-                        <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
+                        <div className=" p-4 rounded-md mt-6 overflow-hidden">
                             <div className="flex justify-between">
                                 <Input
                                     placeholder="Search data..."

@@ -29,16 +29,16 @@ export const Header = ({ profile }: HeaderProps) => {
     };
 
     return (
-        <header className="p-4 xsm:p-6 bg-blackOpacity-light rounded-md flex flex-col xsm:flex-row gap-4 justify-end items-center">
+        <header className="p-4 xsm:p-6 bg-secondary-light rounded-md flex flex-col xsm:flex-row gap-4 justify-end items-center">
             <Language />
             {!profile ? (
-                <div className="flex items-center gap-4 bg-blackOpacity p-2">
+                <div className="flex items-center gap-4 bg-secondary p-2">
                     <div className="p-1 w-12 h-12 border-purple border-2 rounded-md xsm:p-3 flex justify-center items-center">
                         <AiOutlineUser className="text-purple size-6" />
                     </div>
                     <div className="flex items-center gap-2">
                         <Link
-                            className="text-yellow hover:text-yellow-light"
+                            className="text-green-600 hover:text-green-500"
                             href="/login"
                             onClick={() => setIsAsideOpenedHandler(false)}
                         >

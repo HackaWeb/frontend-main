@@ -4,6 +4,12 @@
 
 .light {
     --background: #fffefd;
+    --modal-bg: #e0e0e0eb;
+
+    --primary: #00000090;
+    --secondary: #00000010;
+    --secondary-light: #0000001a;
+    --secondary-dark: #0000004d;
 
     --yellow: #ffd500;
     --yellow-dark: #ccaa00;
@@ -13,16 +19,10 @@
     --purple-dark: #6e3dc7;
     --purple-light: #a97fff;
 
-    --white: #00000080;
-
     --gray: #bdbdbd;
     --gray-dark: #7a7a7a;
     --gray-light: #e0e0e0;
     --gray-superdark: #242a4d;
-
-    --black-opacity: #00000010;
-    --black-opacity-light: #0000001a;
-    --black-opacity-dark: #00000022;
 
     --blue: #161a2e;
     --blue-dark: #131627;
@@ -35,6 +35,12 @@
 
 .dark {
     --background: #111827;
+    --modal-bg: #161a2e;
+
+    --primary: #ffffff;
+    --secondary: #00000026;
+    --secondary-light: #0000001a;
+    --secondary-dark: #0000004d;
 
     --yellow: #ffd500;
     --yellow-dark: #ccaa00;
@@ -44,16 +50,10 @@
     --purple-dark: #6e3dc7;
     --purple-light: #a97fff;
 
-    --white: #ffffff;
-
     --gray: #bdbdbd;
     --gray-dark: #7a7a7a;
     --gray-light: #e0e0e0;
     --gray-superdark: #242a4d;
-
-    --black-opacity: #00000026;
-    --black-opacity-light: #0000001a;
-    --black-opacity-dark: #0000004d;
 
     --blue: #161a2e;
     --blue-dark: #131627;
@@ -102,7 +102,7 @@ img {
 }
 
 @layer base {
-  :root {
+    :root {
         --radius: 0.5rem;
     }
 }

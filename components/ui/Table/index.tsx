@@ -4,9 +4,9 @@ import { TableProps } from "./Table.props";
 export const Table = ({ headers, data, className }: TableProps) => {
     return (
         <div className={cn("overflow-x-auto w-full rounded-md", className)}>
-            <table className="min-w-max border-collapse text-gray w-full">
+            <table className="min-w-max border-collapse text-primary w-full">
                 <thead>
-                    <tr className="bg-blackOpacity-light text-white">
+                    <tr className="bg-secondary-light text-primary">
                         {headers.map((header, index) => (
                             <th key={index} className="p-3 text-left">
                                 {header}

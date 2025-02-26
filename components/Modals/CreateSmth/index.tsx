@@ -3,7 +3,7 @@
 import { ReturnBtn } from "@/components/ui/ReturnBtn";
 import { RiEditLine } from "react-icons/ri";
 import { Button } from "@/components/ui/Button";
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { BsFillImageFill } from "react-icons/bs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -51,11 +51,9 @@ export const CreateSmth = () => {
     return (
         <motion.div
             {...popAnimationWithTransform}
-            className="max-h-[95vh] overflow-y-auto pt-4 fixed left-[50%] -translate-x-1/2 md:max-w-[700px] w-[95%] md:w-full md:top-10 top-4 z-10 bg-blue sm:p-6 flex flex-col rounded-lg bottom-4"
+            className="max-h-[95vh] overflow-y-auto pt-4 fixed left-[50%] -translate-x-1/2 md:max-w-[700px] w-[95%] md:w-full md:top-10 top-4 z-10 bg-modalBg sm:p-6 flex flex-col rounded-lg bottom-4 text-primary"
         >
-            <ReturnBtn
-                className="self-start mt-2 mb-10 ml-2 sm:ml-4"
-            />
+            <ReturnBtn className="self-start mt-2 mb-10 ml-2 sm:ml-4" />
             <div className="text-xl sm:text-3xl text-center">
                 Створення Квесту
             </div>
@@ -78,7 +76,7 @@ export const CreateSmth = () => {
                         </motion.div>
                     ) : (
                         <div className="w-full border-2 border-purple aspect-square flex items-center justify-center">
-                            <BsFillImageFill className="size-20 text-gray" />
+                            <BsFillImageFill className="size-20 text-primary" />
                         </div>
                     )}
                     <input

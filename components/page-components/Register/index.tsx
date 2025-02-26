@@ -128,7 +128,7 @@ export const RegisterPageComponent = () => {
                     disabled={isLoading}
                 >
                     {isLoading && (
-                        <ImSpinner2 className="size-6 animate-spin text-gray" />
+                        <ImSpinner2 className="size-6 animate-spin text-primary" />
                     )}{" "}
                     <span>Реєстрація</span>
                 </Button>

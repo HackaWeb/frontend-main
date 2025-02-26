@@ -12,13 +12,10 @@ import { AsideProps } from "./Aside.props";
 import { GiThink } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
-import { getCookie } from "@/helpers/getCookie";
-import { setCookie } from "@/helpers/setCookie";
 
-export const Aside = ({ profile }: AsideProps) => {
-    const router = useRouter();
+export const Aside = ({ profile, theme }: AsideProps) => {
     const links = [
         {
             title: "Хоум",
@@ -48,17 +45,6 @@ export const Aside = ({ profile }: AsideProps) => {
         dispatch(setIsAsideOpened(value));
     };
 
-    const isDarkTheme = async () => {
-        const theme = await getCookie("theme");
-        return theme === "dark";
-    };
-
-    const handleThemeSwitch = async () => {
-        const isDark = await isDarkTheme();
-        setCookie("theme", isDark ? "light" : "dark");
-        router.refresh();
-    };
-
     useEffect(() => {
         setIsAsideOpenedHandler(false);
     }, [pathname]);
@@ -79,22 +65,22 @@ export const Aside = ({ profile }: AsideProps) => {
                 />
             )}
             <aside
-                className={`min-h-[100vh] h-full top-0 left-0 bottom-0 w-[260px] fixed lg:relative lg:w-full z-50 lg:z-0 bg-[#10091b] lg:bg-blackOpacity-dark p-4 shadow-lg 
+                className={`min-h-[100vh] h-full top-0 left-0 bottom-0 w-[260px] fixed lg:relative lg:w-full z-50 lg:z-0 bg-secondary p-4 shadow-lg 
                 transition-transform duration-300 ${
                     aside ? "translate-x-0" : "-translate-x-full"
                 } lg:translate-x-0`}
             >
                 <div className="xsm:mt-6 mt-4">
-                    <div className="flex gap-12 place-items-center">
+                    <div className="flex justify-between place-items-center ">
                         <Link
                             href="/"
-                            className="text-white text-2xl flex items-center gap-2"
+                            className="text-primary text-2xl flex items-center gap-2"
                             onClick={() => setActiveLink("Усі квести")}
                         >
                             <GiThink className="size-12" />
                             <span>QuizzApp</span>
                         </Link>
-                        <ThemeSwitch onCheckedChange={handleThemeSwitch} />
+                        <ThemeSwitch theme={theme} />
                     </div>
 
                     <nav className="text-lg mt-8">
@@ -106,7 +92,7 @@ export const Aside = ({ profile }: AsideProps) => {
                                 >
                                     <Link
                                         href={link.link}
-                                        className="ml-2 flex items-center gap-4 text-white"
+                                        className="ml-2 flex items-center gap-4 text-primary"
                                         onClick={() =>
                                             setActiveLink(link.title)
                                         }

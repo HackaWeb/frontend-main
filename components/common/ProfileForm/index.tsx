@@ -41,7 +41,7 @@ export const ProfileForm = ({ profile, isEditable, isSelfProfile }: ProfileFormP
     };
 
     return (
-        <div className="p-4 bg-blackOpacity rounded-md">
+        <div className="p-4 bg-secondary rounded-md">
             <form onSubmit={onUpdateProfileSubmit}>
                 <LabelInput
                     id="email"
