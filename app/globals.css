@@ -4,12 +4,12 @@
 
 .light {
     --background: #fffefd;
+    --modal-bg: #e0e0e0eb;
 
     --primary: #00000090;
     --secondary: #00000010;
     --secondary-light: #0000001a;
     --secondary-dark: #0000004d;
-    --modal-bg: #e0e0e0eb;
 
     --yellow: #ffd500;
     --yellow-dark: #ccaa00;
@@ -35,12 +35,12 @@
 
 .dark {
     --background: #111827;
+    --modal-bg: #161a2e;
 
     --primary: #ffffff;
     --secondary: #00000026;
     --secondary-light: #0000001a;
     --secondary-dark: #0000004d;
-    --modal-bg: #161a2e;
 
     --yellow: #ffd500;
     --yellow-dark: #ccaa00;
