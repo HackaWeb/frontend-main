@@ -9,7 +9,7 @@ import { ProfileFormProps } from "./ProfileForm.props";
 import { updateProfile } from "@/apis/profile";
 import { SOMETHING_WRONG_MESSAGE } from "@/constants";
 
-export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
+export const ProfileForm = ({ profile, isEditable, isSelfProfile }: ProfileFormProps) => {
     const router = useRouter();
 
     const [userData, setUserData] = useState({
@@ -45,7 +45,9 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
             <form onSubmit={onUpdateProfileSubmit}>
                 <LabelInput
                     id="email"
-                    labelTitle={isEditable ? "Ваша пошта" : `Пошта користувача`}
+                    labelTitle={
+                        isSelfProfile ? "Ваша пошта" : `Пошта користувача`
+                    }
                     value={profile.email}
                     type="email"
                     disabled
@@ -54,7 +56,9 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
                 />
                 <LabelInput
                     id="firstName"
-                    labelTitle={isEditable ? "Ваше імʼя" : "Імʼя користувача"}
+                    labelTitle={
+                        isSelfProfile ? "Ваше імʼя" : "Імʼя користувача"
+                    }
                     value={userData.firstName}
                     type="text"
                     placeholder={isEditable ? "Введіть ім'я..." : ""}
@@ -70,7 +74,7 @@ export const ProfileForm = ({ profile, isEditable }: ProfileFormProps) => {
                 <LabelInput
                     id="lastName"
                     labelTitle={
-                        isEditable ? "Ваше прізвище" : "Прізвище користувача"
+                        isSelfProfile ? "Ваше прізвище" : "Прізвище користувача"
                     }
                     value={userData.lastName}
                     type="text"

@@ -94,7 +94,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
                     <LeftColumnProfile profile={profile} isEditable={true} />
                 </div>
                 <div className="overflow-hidden">
-                    <ProfileForm profile={profile} isEditable={true} />
+                    <ProfileForm profile={profile} isEditable={true} isSelfProfile={true} />
                     <div>
                         <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
                             <div className="text-white font-semibold text-lg">
