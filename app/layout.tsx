@@ -23,39 +23,12 @@ const inter = Inter({
     display: "swap",
 });
 
-/* export const metadata: Metadata = {
-    title: "QuizApp – Інтерактивні вікторини та квізи",
-    description:
-        "Грай у захопливі вікторини, перевіряй свої знання та змагайся з друзями. Приєднуйся до нашої спільноти та стань справжнім майстром квізів!",
-    keywords: "квіз, вікторина, тести, розваги, навчання, знання, гра",
-    openGraph: {
-        title: "QuizApp – Грай у вікторини та перевіряй свої знання!",
-        description:
-            "Захопливі квізи та вікторини на будь-яку тему. Змагайся з друзями та стань чемпіоном!",
-        type: "website",
-        url: "https://quiz-app-hackaweb.vercel.app/",
-        images: [
-            {
-                url: "https://quiz-app-hackaweb.vercel.app/logo.png",
-                width: 1200,
-                height: 630,
-                alt: "QuizApp – Інтерактивні вікторини та квізи",
-            },
-        ],
-    },
-    icons: {
-        icon: "/favicon.ico",
-        apple: "/apple-touch-icon.png",
-    },
-    manifest: "/manifest.json",
-}; */
-
 interface RootLayoutProps {
     children: ReactNode;
 }
 
 const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
-    let token = await getCookie("token");
+    const token = await getCookie("token");
     const theme = await getCookie("theme");
     const refreshToken = await getCookie("refreshToken");
 
@@ -69,7 +42,6 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
         } catch (error) {
             console.error(error);
 
-            profile = null;
             setCookie("token", "");
             setCookie("refreshToken", "");
         }
@@ -83,11 +55,11 @@ const RootLayout = async ({ children }: Readonly<RootLayoutProps>) => {
                 setCookie("token", res.token);
                 setCookie("refreshToken", res.refreshToken);
 
-                token = res.token;
+                const profileData = await getProfile();
+                profile = "email" in profileData ? profileData : null;
             }
         } catch (error) {
-            console.log(error);
-
+            console.error(error);
             setCookie("token", "");
             setCookie("refreshToken", "");
         }
