@@ -64,7 +64,7 @@ export const Aside = ({ profile }: AsideProps) => {
                 />
             )}
             <aside
-                className={`min-h-[100vh] h-full top-0 left-0 bottom-0 w-[260px] fixed lg:relative lg:w-full z-50 lg:z-0 bg-secondary p-4 shadow-lg 
+                className={`min-h-[100vh] h-full top-0 left-0 bottom-0 w-[260px] fixed lg:relative lg:w-full z-50 lg:z-0 bg-blue-dark p-4 shadow-lg 
                 transition-transform duration-300 ${
                     aside ? "translate-x-0" : "-translate-x-full"
                 } lg:translate-x-0`}
@@ -72,7 +72,7 @@ export const Aside = ({ profile }: AsideProps) => {
                 <div className="xsm:mt-6 mt-4">
                     <Link
                         href="/"
-                        className="text-primary text-2xl flex items-center gap-2"
+                        className="text-primary text-2xl flex items-center gap-2 text-white"
                         onClick={() => setActiveLink("Усі квести")}
                     >
                         <GiThink className="size-12" />
@@ -88,7 +88,7 @@ export const Aside = ({ profile }: AsideProps) => {
                                 >
                                     <Link
                                         href={link.link}
-                                        className="ml-2 flex items-center gap-4 text-primary"
+                                        className="ml-2 flex items-center gap-4 text-white"
                                         onClick={() =>
                                             setActiveLink(link.title)
                                         }

@@ -79,9 +79,9 @@ export const Messages = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 xsm:right-0 mt-2 w-[280px] xsm:w-80 bg-secondary-dark !bg-opacity-100 rounded-md shadow-lg overflow-hidden z-10"
+                        className="absolute right-0 xsm:right-0 mt-2 w-[280px] xsm:w-80 bg-[#444146] rounded-md shadow-lg overflow-hidden z-10"
                     >
-                        <div className="flex justify-between items-center p-4 bg-secondary-dark text-white">
+                        <div className="flex justify-between items-center p-4 bg-secondary-dark bg-opacity-100 text-white">
                             <span className="font-semibold">Notifications</span>
                             <button
                                 onClick={() => setIsOpen(false)}
@@ -92,46 +92,64 @@ export const Messages = () => {
                         </div>
                         <ul className="max-h-80 overflow-y-auto">
                             <AnimatePresence>
-                                {messages.map((msg) => (
+                                {messages.length ? (
+                                    messages.map((msg) => (
+                                        <motion.li
+                                            key={msg.id}
+                                            initial={{ opacity: 0, y: 100 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.3 }}
+                                            className={`p-4 border-b border-gray-800 hover:bg-secondary cursor-pointer transition ${
+                                                !msg.isRead
+                                                    ? "font-semibold"
+                                                    : ""
+                                            }`}
+                                            onClick={() => markAsRead(msg.id)}
+                                        >
+                                            <div className="flex justify-between">
+                                                <span
+                                                    className={
+                                                        !msg.isRead
+                                                            ? "text-yellow"
+                                                            : "text-white"
+                                                    }
+                                                >
+                                                    {msg.title}
+                                                </span>
+                                                <span className="text-white text-sm">
+                                                    {msg.time}
+                                                </span>
+                                            </div>
+                                            <p className="text-white text-sm mt-1">
+                                                {msg.text}
+                                            </p>
+                                        </motion.li>
+                                    ))
+                                ) : (
                                     <motion.li
-                                        key={msg.id}
                                         initial={{ opacity: 0, y: 100 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 20 }}
                                         transition={{ duration: 0.3 }}
-                                        className={`p-4 border-b border-gray-800 hover:bg-secondary cursor-pointer transition ${
-                                            !msg.isRead ? "font-semibold" : ""
-                                        }`}
-                                        onClick={() => markAsRead(msg.id)}
+                                        className="mt-2 text-center text-gray mb-2"
                                     >
-                                        <div className="flex justify-between">
-                                            <span
-                                                className={
-                                                    !msg.isRead
-                                                        ? "text-yellow"
-                                                        : "text-white"
-                                                }
-                                            >
-                                                {msg.title}
-                                            </span>
-                                            <span className="text-white text-sm">
-                                                {msg.time}
-                                            </span>
-                                        </div>
-                                        <p className="text-white text-sm mt-1">
-                                            {msg.text}
-                                        </p>
+                                        No new messages
                                     </motion.li>
-                                ))}
+                                )}
                             </AnimatePresence>
                         </ul>
-                        <Button
-                            className="mt-3 text-sm mx-auto py-2 mb-2 text-white"
-                            color="purpleBorder"
-                            onClick={() => setMessages([])}
-                        >
-                            Read All
-                        </Button>
+                        {messages.length ? (
+                            <Button
+                                className="mt-3 text-sm mx-auto py-2 mb-2 text-white"
+                                color="purpleBorder"
+                                onClick={() => setMessages([])}
+                            >
+                                Read All
+                            </Button>
+                        ) : (
+                            ""
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

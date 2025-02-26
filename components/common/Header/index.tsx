@@ -30,7 +30,7 @@ export const Header = ({ profile, theme }: HeaderProps) => {
     };
 
     return (
-        <header className="p-4 xsm:p-6 bg-secondary-light rounded-md flex justify-between items-center">
+        <header className="p-4 sm:p-6 bg-secondary-light rounded-md flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-center">
             <div className="flex items-center gap-4">
                 <Language />
                 <ThemeSwitch theme={theme} />

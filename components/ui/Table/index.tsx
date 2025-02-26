@@ -22,7 +22,7 @@ export const Table = ({ headers, data, className }: TableProps) => {
                                 className="border-t border-gray-800"
                             >
                                 {row.map((cell, cellIndex) => (
-                                    <td key={cellIndex} className="py-2 px-4">
+                                    <td key={cellIndex} className="py-2 xsm:px-4 px-2 text-sm xsm:text-base">
                                         {cell}
                                     </td>
                                 ))}
@@ -32,7 +32,7 @@ export const Table = ({ headers, data, className }: TableProps) => {
                         <tr>
                             <td
                                 colSpan={headers.length}
-                                className="py-2 px-4 text-center"
+                                className="py-2 px-2 xsm:px-4 text-center"
                             >
                                 Немає даних
                             </td>
