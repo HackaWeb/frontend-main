@@ -38,7 +38,7 @@ export const Header = ({ profile }: HeaderProps) => {
                     </div>
                     <div className="flex items-center gap-2">
                         <Link
-                            className="text-green-600 hover:text-green-500"
+                            className="text-yellow-light hover:text-yellow-dark"
                             href="/login"
                             onClick={() => setIsAsideOpenedHandler(false)}
                         >
@@ -55,7 +55,7 @@ export const Header = ({ profile }: HeaderProps) => {
                 </div>
             ) : (
                 <div className="flex items-center gap-4">
-                    <div className="flex bg-blackOpacity p-2 relative w-auto rounded-md">
+                    <div className="flex bg-secondary p-2 relative w-auto rounded-md">
                         <div className="p-2 w-12 h-12 border-purple border-2 rounded-md flex justify-center items-center">
                             {!profile.avatarUrl ? (
                                 <AiOutlineUser className="text-purple size-6" />

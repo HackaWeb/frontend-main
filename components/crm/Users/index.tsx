@@ -58,8 +58,8 @@ export const UsersPageComponent = ({ users }: { users: any[] }) => {
 
     return (
         <div className="p-6 grid">
-            <h1 className="text-2xl font-bold mb-4">Users List</h1>
-            <div className="bg-blackOpacity-light rounded-md p-4 w-full overflow-hidden">
+            <h1 className="text-2xl font-bold mb-4 text-primary">Users List</h1>
+            <div className="bg-secondary-light rounded-md p-4 w-full overflow-hidden">
                 <div className="flex justify-between">
                     <Input
                         placeholder="Search data..."

@@ -24,7 +24,7 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
         profile && (
             <motion.div
                 {...slideFromBottomAnimation}
-                className="mt-8 bg-blackOpacity-light p-6 rounded-md"
+                className="mt-8 bg-secondary-light p-6 rounded-md"
             >
                 <h1>
                     Профіль користувача{" "}
@@ -45,7 +45,7 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
                             isSelfProfile={false}
                         />
                         <div>
-                            <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
+                            <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
                                 <div className="text-white font-semibold text-lg">
                                     Table Title
                                 </div>
@@ -55,7 +55,7 @@ export const UserDetailsPageComponent = ({ profile }: UserProfileProps) => {
                                     data={data}
                                 />
                             </div>
-                            <div className="bg-blackOpacity-light p-4 rounded-md mt-6 overflow-hidden">
+                            <div className="bg-secondary-light p-4 rounded-md mt-6 overflow-hidden">
                                 <Table headers={headers} data={data} />
                             </div>
                         </div>

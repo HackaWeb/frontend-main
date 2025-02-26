@@ -112,11 +112,11 @@ export const LeftColumnProfile = ({
                         />
                     </label>
                 )}
-                <div className="mt-4 text-center text-xl font-semibold">
+                <div className="mt-4 text-center text-xl font-semibold text-primary">
                     {printUserNickname(profile.firstName, profile.lastName)}
                 </div>
                 <div className="flex justify-center">
-                    <div className="p-2 px-4 flex bg-blackOpacity-light text-purple font-semibold mx-auto mt-2 w-auto rounded-md">
+                    <div className="p-2 px-4 flex bg-secondary-light text-purple font-semibold mx-auto mt-2 w-auto rounded-md">
                         Artist
                     </div>
                 </div>

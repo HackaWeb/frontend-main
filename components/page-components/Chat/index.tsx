@@ -31,21 +31,21 @@ export const ChatPageComponent = ({ chats, profile }: ChatProps) => {
     };
 
     return (
-        <div className="mt-8 bg-blackOpacity-light xsm:p-6 p-2 rounded-md">
-            <h1>Чати</h1>
-            <div className="flex flex-col md:flex-row h-[800px] bg-blackOpacity-light text-white mt-6">
+        <div className="mt-8 bg-secondary-light xsm:p-6 p-2 rounded-md text-primary">
+            <h1 className="text-primary">Чати</h1>
+            <div className="flex flex-col md:flex-row h-[800px] bg-secondary-light mt-6">
                 <motion.div
                     initial={{ x: -50, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    className="w-full md:w-1/4 bg-blackOpacity-light xsm:p-6 p-2 shadow-lg overflow-y-auto"
+                    className="w-full md:w-1/4 bg-secondary-light xsm:p-6 p-2 shadow-lg overflow-y-auto"
                 >
                     <ul className="space-y-3">
                         {chats.map((chat) => (
                             <li
                                 key={chat.id}
-                                className={`flex items-center xsm:gap-3 gap-2 xsm:p-3 p-2 rounded-lg cursor-pointer transition hover:bg-blackOpacity ${
+                                className={`flex items-center xsm:gap-3 gap-2 xsm:p-3 p-2 rounded-lg cursor-pointer transition hover:bg-secondary ${
                                     selectedChat?.id === chat.id
-                                        ? "bg-blackOpacity-dark"
+                                        ? "bg-secondary"
                                         : ""
                                 }`}
                                 onClick={() => setSelectedChat(chat)}
@@ -96,7 +96,7 @@ export const ChatPageComponent = ({ chats, profile }: ChatProps) => {
                                     {selectedChat.user.lastName}
                                 </div>
                             </div>
-                            <div className="flex-1 overflow-y-auto xsm:mt-4 mt-2 space-y-3 xsm:p-4 p-2 bg-blackOpacity-light rounded-lg">
+                            <div className="flex-1 overflow-y-auto xsm:mt-4 mt-2 space-y-3 xsm:p-4 p-2 bg-secondary-light rounded-lg">
                                 {selectedChat.messages.map((msg, index) => (
                                     <motion.div
                                         key={index}
@@ -104,8 +104,8 @@ export const ChatPageComponent = ({ chats, profile }: ChatProps) => {
                                         animate={{ opacity: 1, y: 0 }}
                                         className={`xsm:p-3 p-2 rounded-lg xsm:max-w-xs max-w-40 ${
                                             msg.sender.id === profile.id
-                                                ? "bg-blackOpacity-dark ml-auto text-right"
-                                                : "bg-blackOpacity-light"
+                                                ? "bg-secondary-dark ml-auto text-right"
+                                                : "bg-secondary-light"
                                         }`}
                                     >
                                         <p className="xsm:text-base text-sm">

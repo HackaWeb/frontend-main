@@ -63,7 +63,7 @@ export const Messages = () => {
             <button
                 aria-label="Messages"
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 bg-blackOpacity rounded-md w-12 h-12 flex items-center justify-center shadow-lg transition hover:bg-blackOpacity"
+                className="p-2 bg-secondary rounded-md w-12 h-12 flex items-center justify-center shadow-lg transition hover:bg-secondary-light"
             >
                 <div className="relative">
                     <AiFillMessage className="text-purple size-6" />
@@ -72,7 +72,6 @@ export const Messages = () => {
                     )}
                 </div>
             </button>
-
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -80,9 +79,9 @@ export const Messages = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute right-0 xsm:right-0 mt-2 w-[280px] xsm:w-80 bg-[#10091b] rounded-md shadow-lg overflow-hidden z-10"
+                        className="absolute right-0 xsm:right-0 mt-2 w-[280px] xsm:w-80 bg-secondary-dark !bg-opacity-100 rounded-md shadow-lg overflow-hidden z-10"
                     >
-                        <div className="flex justify-between items-center p-4 bg-blackOpacity-dark text-white">
+                        <div className="flex justify-between items-center p-4 bg-secondary-dark text-white">
                             <span className="font-semibold">Notifications</span>
                             <button
                                 onClick={() => setIsOpen(false)}
@@ -100,7 +99,7 @@ export const Messages = () => {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 20 }}
                                         transition={{ duration: 0.3 }}
-                                        className={`p-4 border-b border-gray-800 hover:bg-blackOpacity cursor-pointer transition ${
+                                        className={`p-4 border-b border-gray-800 hover:bg-secondary cursor-pointer transition ${
                                             !msg.isRead ? "font-semibold" : ""
                                         }`}
                                         onClick={() => markAsRead(msg.id)}
@@ -110,16 +109,16 @@ export const Messages = () => {
                                                 className={
                                                     !msg.isRead
                                                         ? "text-yellow"
-                                                        : "text-gray"
+                                                        : "text-white"
                                                 }
                                             >
                                                 {msg.title}
                                             </span>
-                                            <span className="text-gray text-sm">
+                                            <span className="text-white text-sm">
                                                 {msg.time}
                                             </span>
                                         </div>
-                                        <p className="text-gray text-sm mt-1">
+                                        <p className="text-white text-sm mt-1">
                                             {msg.text}
                                         </p>
                                     </motion.li>
@@ -127,7 +126,7 @@ export const Messages = () => {
                             </AnimatePresence>
                         </ul>
                         <Button
-                            className="mt-3 text-sm mx-auto py-2 mb-2"
+                            className="mt-3 text-sm mx-auto py-2 mb-2 text-white"
                             color="purpleBorder"
                             onClick={() => setMessages([])}
                         >
