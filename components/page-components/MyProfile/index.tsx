@@ -85,7 +85,7 @@ export const MyProfilePageComponent = ({ profile }: MyProfileProps) => {
     return (
         <motion.div
             {...slideFromBottomAnimation}
-            className="mt-8 bg-blackOpacity-light p-6"
+            className="mt-8 bg-blackOpacity-light p-6 rounded-md"
         >
             <h1>Мій кабінет</h1>
             <ReturnBtn className="mt-4" />

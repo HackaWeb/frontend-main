@@ -8,8 +8,11 @@ const UserProfile = async ({ params }: { params: Promise<{ id: string }> }) => {
     const getUserHandler = async () => {
         try {
             const response = await getUser(userId);
+            if (response.id) {
+                return { ...response };
+            }
 
-            return { ...response };
+            return null;
         } catch (error) {
             console.error(error);
             return null;
